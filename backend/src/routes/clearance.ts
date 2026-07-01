@@ -18,6 +18,7 @@ import {
   activity_log,
 } from '../db/schema.js'
 import { eq, and, desc } from 'drizzle-orm'
+import { computeEntryHash, GENESIS_HASH } from '../lib/ledgerHash.js'
 import { authMiddleware, getUserId } from '../lib/auth.js'
 
 const router = new Hono()
@@ -79,10 +80,10 @@ async function appendLedger(
     .where(eq(ledger_entries.workspace_id, workspaceId))
     .orderBy(desc(ledger_entries.seq))
     .limit(1)
-  const seq = prev ? prev.seq + 1 : 1
-  const prevHash = prev ? prev.entry_hash : '0'.repeat(64)
+  const seq = prev ? prev.seq + 1 : 0
+  const prevHash = prev ? prev.entry_hash : GENESIS_HASH
   const createdAt = new Date()
-  const canonical = JSON.stringify({
+  const entryHash = computeEntryHash({
     workspace_id: workspaceId,
     seq,
     entity_type: entityType,
@@ -91,9 +92,7 @@ async function appendLedger(
     payload,
     actor_id: actorId,
     prev_hash: prevHash,
-    created_at: createdAt.toISOString(),
   })
-  const entryHash = sha256(canonical)
   const [entry] = await db
     .insert(ledger_entries)
     .values({

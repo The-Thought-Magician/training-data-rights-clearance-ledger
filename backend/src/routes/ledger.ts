@@ -3,38 +3,21 @@ import { eq, and, asc } from 'drizzle-orm'
 import { db } from '../db/index.js'
 import { ledger_entries, members } from '../db/schema.js'
 import { getUserId } from '../lib/auth.js'
+import { computeEntryHash, GENESIS_HASH } from '../lib/ledgerHash.js'
 
 const router = new Hono()
 
-// ---------------------------------------------------------------------------
-// hashing — MUST match the writer used in other route files (claims.ts, etc.)
-// so that chain re-computation in /verify reproduces stored entry_hash values.
-// ---------------------------------------------------------------------------
-
-function sha256Hex(input: string): string {
-  let h1 = 0x811c9dc5
-  let h2 = 0x811c9dc5
-  for (let i = 0; i < input.length; i++) {
-    const c = input.charCodeAt(i)
-    h1 = Math.imul(h1 ^ c, 0x01000193) >>> 0
-    h2 = Math.imul(h2 ^ ((c << 5) | (c >>> 2)), 0x01000193) >>> 0
-  }
-  const hex = (n: number) => n.toString(16).padStart(8, '0')
-  return hex(h1) + hex(h2) + hex(Math.imul(h1 ^ h2, 0x01000193) >>> 0) + hex((h1 + h2) >>> 0)
-}
-
 function recomputeHash(e: typeof ledger_entries.$inferSelect): string {
-  const body = JSON.stringify({
+  return computeEntryHash({
+    workspace_id: e.workspace_id,
     seq: e.seq,
     entity_type: e.entity_type,
     entity_id: e.entity_id,
     action: e.action,
-    payload: e.payload ?? {},
+    payload: e.payload,
     actor_id: e.actor_id,
     prev_hash: e.prev_hash,
-    created_at: e.created_at.toISOString(),
   })
-  return sha256Hex(body)
 }
 
 async function resolveWorkspaceId(userId: string): Promise<string | null> {
@@ -92,8 +75,8 @@ router.get('/verify', async (c) => {
     .where(eq(ledger_entries.workspace_id, workspaceId))
     .orderBy(asc(ledger_entries.seq))
 
-  let prev = '0'.repeat(40)
-  let expectedSeq = 1
+  let prev = GENESIS_HASH
+  let expectedSeq = rows[0]?.seq ?? 0
   for (const e of rows) {
     // sequence must be contiguous starting at 1
     if (e.seq !== expectedSeq) {

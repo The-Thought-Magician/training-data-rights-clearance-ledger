@@ -32,6 +32,7 @@ import {
 } from '../db/schema.js'
 import { eq, and, inArray } from 'drizzle-orm'
 import { authMiddleware, getUserId } from '../lib/auth.js'
+import { computeEntryHash, GENESIS_HASH } from '../lib/ledgerHash.js'
 
 const router = new Hono()
 
@@ -68,12 +69,12 @@ interface LedgerInput {
 
 function buildLedgerRows(workspaceId: string, actorId: string, inputs: LedgerInput[]) {
   const rows: Array<typeof ledger_entries.$inferInsert> = []
-  let prevHash = 'GENESIS'
+  let prevHash = GENESIS_HASH
   let seq = 0
   for (const inp of inputs) {
     const id = randomUUID()
     const createdAt = new Date()
-    const material = JSON.stringify({
+    const entryHash = computeEntryHash({
       workspace_id: workspaceId,
       seq,
       entity_type: inp.entity_type,
@@ -83,7 +84,6 @@ function buildLedgerRows(workspaceId: string, actorId: string, inputs: LedgerInp
       actor_id: inp.actor_id,
       prev_hash: prevHash,
     })
-    const entryHash = sha256(material)
     rows.push({
       id,
       workspace_id: workspaceId,

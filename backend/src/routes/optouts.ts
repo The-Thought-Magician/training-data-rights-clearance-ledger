@@ -1,11 +1,11 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
 import { z } from 'zod'
-import { createHash } from 'node:crypto'
 import { db } from '../db/index.js'
 import { optouts, data_sources, ledger_entries, activity_log, members } from '../db/schema.js'
 import { eq, and, desc } from 'drizzle-orm'
 import { authMiddleware, getUserId } from '../lib/auth.js'
+import { computeEntryHash, GENESIS_HASH } from '../lib/ledgerHash.js'
 
 const router = new Hono()
 
@@ -26,9 +26,9 @@ async function appendLedger(args: {
     .orderBy(desc(ledger_entries.seq))
     .limit(1)
 
-  const seq = (last?.seq ?? 0) + 1
-  const prevHash = last?.entry_hash ?? '0'.repeat(64)
-  const canonical = JSON.stringify({
+  const seq = (last?.seq ?? -1) + 1
+  const prevHash = last?.entry_hash ?? GENESIS_HASH
+  const entryHash = computeEntryHash({
     workspace_id: args.workspaceId,
     seq,
     entity_type: args.entityType,
@@ -38,7 +38,6 @@ async function appendLedger(args: {
     actor_id: args.actorId,
     prev_hash: prevHash,
   })
-  const entryHash = createHash('sha256').update(prevHash + canonical).digest('hex')
 
   const [entry] = await db
     .insert(ledger_entries)

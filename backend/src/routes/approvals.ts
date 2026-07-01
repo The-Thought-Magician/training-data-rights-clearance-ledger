@@ -11,6 +11,7 @@ import {
   activity_log,
 } from '../db/schema.js'
 import { authMiddleware, getUserId } from '../lib/auth.js'
+import { computeEntryHash, GENESIS_HASH } from '../lib/ledgerHash.js'
 
 const router = new Hono()
 
@@ -27,18 +28,6 @@ async function resolveWorkspaceId(userId: string): Promise<string | null> {
   return m?.workspace_id ?? null
 }
 
-function sha256Hex(input: string): string {
-  let h1 = 0x811c9dc5
-  let h2 = 0x811c9dc5
-  for (let i = 0; i < input.length; i++) {
-    const c = input.charCodeAt(i)
-    h1 = Math.imul(h1 ^ c, 0x01000193) >>> 0
-    h2 = Math.imul(h2 ^ ((c << 5) | (c >>> 2)), 0x01000193) >>> 0
-  }
-  const hex = (n: number) => n.toString(16).padStart(8, '0')
-  return hex(h1) + hex(h2) + hex(Math.imul(h1 ^ h2, 0x01000193) >>> 0) + hex((h1 + h2) >>> 0)
-}
-
 async function appendLedger(
   workspaceId: string,
   entityType: string,
@@ -53,10 +42,11 @@ async function appendLedger(
     .where(eq(ledger_entries.workspace_id, workspaceId))
     .orderBy(desc(ledger_entries.seq))
     .limit(1)
-  const seq = (last?.seq ?? 0) + 1
-  const prev_hash = last?.entry_hash ?? '0'.repeat(40)
+  const seq = (last?.seq ?? -1) + 1
+  const prev_hash = last?.entry_hash ?? GENESIS_HASH
   const createdAt = new Date()
-  const body = JSON.stringify({
+  const entry_hash = computeEntryHash({
+    workspace_id: workspaceId,
     seq,
     entity_type: entityType,
     entity_id: entityId,
@@ -64,9 +54,7 @@ async function appendLedger(
     payload,
     actor_id: actorId,
     prev_hash,
-    created_at: createdAt.toISOString(),
   })
-  const entry_hash = sha256Hex(body)
   await db.insert(ledger_entries).values({
     workspace_id: workspaceId,
     seq,
