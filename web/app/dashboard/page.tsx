@@ -121,7 +121,11 @@ export default function DashboardPage() {
     )
   }
 
-  const statusCounts = risk?.statusCounts ?? []
+  const statusCounts = Array.isArray(risk?.statusCounts)
+    ? (risk!.statusCounts as StatusCount[])
+    : Object.entries((risk?.statusCounts as unknown as Record<string, number>) ?? {}).map(
+        ([status, count]) => ({ status, count }),
+      )
   const totalSources = statusCounts.reduce((a, s) => a + (s.count || 0), 0)
   const clearedCount = statusCounts.find((s) => s.status === 'cleared')?.count ?? 0
   const blocked = countOf(risk?.blocked)
