@@ -106,7 +106,7 @@ export default function DashboardPage() {
   if (error) {
     return (
       <div className="space-y-4">
-        <h1 className="text-xl font-semibold text-zinc-100">Dashboard</h1>
+        <h1 className="text-xl font-semibold text-slate-100">Dashboard</h1>
         <EmptyState
           title="Could not load dashboard"
           description={error}
@@ -142,10 +142,10 @@ export default function DashboardPage() {
       <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className="flex items-center gap-3">
-            <h1 className="text-xl font-semibold text-zinc-100">Overview</h1>
+            <h1 className="text-xl font-semibold text-slate-100">Overview</h1>
             {workspace?.role && <Badge tone="purple">{workspace.role}</Badge>}
           </div>
-          <p className="mt-1 text-sm text-zinc-500">
+          <p className="mt-1 text-sm text-slate-500">
             {workspace?.workspace?.name
               ? `Rights clearance posture for ${workspace.workspace.name}`
               : 'Portfolio-wide rights clearance posture'}
@@ -178,8 +178,8 @@ export default function DashboardPage() {
         {/* Sources by status */}
         <Card className="lg:col-span-2">
           <CardHeader className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-zinc-200">Sources by status</h2>
-            <Link href="/dashboard/sources" className="text-xs text-rose-400 hover:text-rose-300">
+            <h2 className="text-sm font-semibold text-slate-200">Sources by status</h2>
+            <Link href="/dashboard/sources" className="text-xs text-fuchsia-400 hover:text-fuchsia-300">
               View register →
             </Link>
           </CardHeader>
@@ -209,17 +209,17 @@ export default function DashboardPage() {
                           ? 'bg-amber-500'
                           : tone === 'blue'
                             ? 'bg-sky-500'
-                            : 'bg-zinc-500'
+                            : 'bg-slate-500'
                   return (
                     <div key={s.status} className="flex items-center gap-3">
                       <div className="w-24 shrink-0">
                         <Badge tone={tone}>{s.status}</Badge>
                       </div>
-                      <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-zinc-800">
+                      <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-slate-800">
                         <div className={`h-full ${barColor}`} style={{ width: `${pct}%` }} />
                       </div>
-                      <div className="w-16 shrink-0 text-right text-sm tabular-nums text-zinc-300">
-                        {s.count} <span className="text-zinc-600">({pct}%)</span>
+                      <div className="w-16 shrink-0 text-right text-sm tabular-nums text-slate-300">
+                        {s.count} <span className="text-slate-600">({pct}%)</span>
                       </div>
                     </div>
                   )
@@ -232,14 +232,14 @@ export default function DashboardPage() {
         {/* Risk summary */}
         <Card>
           <CardHeader className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-zinc-200">Top risk sources</h2>
-            <Link href="/dashboard/risk" className="text-xs text-rose-400 hover:text-rose-300">
+            <h2 className="text-sm font-semibold text-slate-200">Top risk sources</h2>
+            <Link href="/dashboard/risk" className="text-xs text-fuchsia-400 hover:text-fuchsia-300">
               Risk →
             </Link>
           </CardHeader>
           <CardBody>
             {topRisks.length === 0 ? (
-              <p className="py-6 text-center text-sm text-zinc-500">No risk scores computed yet.</p>
+              <p className="py-6 text-center text-sm text-slate-500">No risk scores computed yet.</p>
             ) : (
               <ul className="space-y-3">
                 {topRisks.slice(0, 6).map((rk) => {
@@ -251,13 +251,13 @@ export default function DashboardPage() {
                     <li key={rk.source_id}>
                       <Link
                         href={`/dashboard/sources/${rk.source_id}`}
-                        className="block rounded-lg p-2 hover:bg-zinc-800/50"
+                        className="block rounded-lg p-2 hover:bg-slate-800/50"
                       >
                         <div className="flex items-center justify-between gap-2">
-                          <span className="truncate text-sm text-zinc-200">{rk.name || rk.source_id}</span>
-                          <span className="shrink-0 text-xs tabular-nums text-zinc-400">{pct}</span>
+                          <span className="truncate text-sm text-slate-200">{rk.name || rk.source_id}</span>
+                          <span className="shrink-0 text-xs tabular-nums text-slate-400">{pct}</span>
                         </div>
-                        <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-zinc-800">
+                        <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-slate-800">
                           <div className={`h-full ${bar}`} style={{ width: `${pct}%` }} />
                         </div>
                       </Link>
@@ -274,14 +274,14 @@ export default function DashboardPage() {
         {/* Clearance throughput chart */}
         <Card className="lg:col-span-2">
           <CardHeader className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-zinc-200">Clearance throughput</h2>
-            <span className="text-xs text-zinc-500">
+            <h2 className="text-sm font-semibold text-slate-200">Clearance throughput</h2>
+            <span className="text-xs text-slate-500">
               {avgDays != null ? `Avg ${Number(avgDays).toFixed(1)}d to clear` : 'No clear-time data'}
             </span>
           </CardHeader>
           <CardBody>
             {series.length === 0 ? (
-              <p className="py-6 text-center text-sm text-zinc-500">No throughput data yet.</p>
+              <p className="py-6 text-center text-sm text-slate-500">No throughput data yet.</p>
             ) : (
               <div className="flex h-40 items-end gap-2">
                 {series.map((p, i) => {
@@ -290,13 +290,13 @@ export default function DashboardPage() {
                     <div key={i} className="flex flex-1 flex-col items-center gap-1.5">
                       <div className="flex h-full w-full items-end">
                         <div
-                          className="w-full rounded-t bg-rose-600/80 transition-all hover:bg-rose-500"
+                          className="w-full rounded-t bg-fuchsia-600/80 transition-all hover:bg-fuchsia-500"
                           style={{ height: `${Math.max(h, 2)}%` }}
                           title={`${p.cleared ?? 0} cleared`}
                         />
                       </div>
-                      <span className="truncate text-[10px] text-zinc-600">{p.period ?? i + 1}</span>
-                      <span className="text-xs tabular-nums text-zinc-400">{p.cleared ?? 0}</span>
+                      <span className="truncate text-[10px] text-slate-600">{p.period ?? i + 1}</span>
+                      <span className="text-xs tabular-nums text-slate-400">{p.cleared ?? 0}</span>
                     </div>
                   )
                 })}
@@ -308,31 +308,31 @@ export default function DashboardPage() {
         {/* Notifications */}
         <Card>
           <CardHeader className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-zinc-200">
+            <h2 className="text-sm font-semibold text-slate-200">
               Notifications {unread.length > 0 && <Badge tone="rose">{unread.length}</Badge>}
             </h2>
-            <Link href="/dashboard/notifications" className="text-xs text-rose-400 hover:text-rose-300">
+            <Link href="/dashboard/notifications" className="text-xs text-fuchsia-400 hover:text-fuchsia-300">
               All →
             </Link>
           </CardHeader>
           <CardBody>
             {notifications.length === 0 ? (
-              <p className="py-6 text-center text-sm text-zinc-500">You're all caught up.</p>
+              <p className="py-6 text-center text-sm text-slate-500">You're all caught up.</p>
             ) : (
               <ul className="space-y-2">
                 {notifications.slice(0, 6).map((n) => {
                   const item = (
                     <div
                       className={`rounded-lg border p-3 ${
-                        n.is_read ? 'border-zinc-800 bg-zinc-900/40' : 'border-rose-900/50 bg-rose-950/20'
+                        n.is_read ? 'border-slate-800 bg-slate-900/40' : 'border-fuchsia-900/50 bg-fuchsia-950/20'
                       }`}
                     >
                       <div className="flex items-start justify-between gap-2">
-                        <span className="text-sm font-medium text-zinc-200">{n.title || n.kind || 'Notification'}</span>
-                        {!n.is_read && <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-rose-500" />}
+                        <span className="text-sm font-medium text-slate-200">{n.title || n.kind || 'Notification'}</span>
+                        {!n.is_read && <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-fuchsia-500" />}
                       </div>
-                      {n.body && <p className="mt-0.5 line-clamp-2 text-xs text-zinc-500">{n.body}</p>}
-                      {n.created_at && <p className="mt-1 text-[10px] text-zinc-600">{fmtDate(n.created_at)}</p>}
+                      {n.body && <p className="mt-0.5 line-clamp-2 text-xs text-slate-500">{n.body}</p>}
+                      {n.created_at && <p className="mt-1 text-[10px] text-slate-600">{fmtDate(n.created_at)}</p>}
                     </div>
                   )
                   return (

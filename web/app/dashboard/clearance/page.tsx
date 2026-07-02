@@ -292,8 +292,8 @@ export default function ClearancePage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Clearance Gate Console</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">Clearance Gate Console</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Evaluate sources against required checks, approve sign-offs that issue tamper-evident
             certificates, and record overrides.
           </p>
@@ -334,14 +334,14 @@ export default function ClearancePage() {
       {/* Required-checks summary strip */}
       <Card>
         <CardHeader className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-zinc-200">Active gate requirements</h2>
-          <span className="text-xs text-zinc-500">
+          <h2 className="text-sm font-semibold text-slate-200">Active gate requirements</h2>
+          <span className="text-xs text-slate-500">
             {requirements.filter((r) => r.is_required).length} of {requirements.length} required
           </span>
         </CardHeader>
         <CardBody>
           {requirements.length === 0 ? (
-            <p className="text-sm text-zinc-500">No requirements configured yet.</p>
+            <p className="text-sm text-slate-500">No requirements configured yet.</p>
           ) : (
             <div className="flex flex-wrap gap-2">
               {requirements.map((r) => (
@@ -364,8 +364,8 @@ export default function ClearancePage() {
               onClick={() => setTab(t)}
               className={`rounded-lg px-3 py-1.5 text-sm font-medium capitalize transition-colors ${
                 tab === t
-                  ? 'bg-rose-600 text-white'
-                  : 'bg-zinc-800/60 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+                  ? 'bg-fuchsia-600 text-white'
+                  : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
               }`}
             >
               {t}
@@ -376,7 +376,7 @@ export default function ClearancePage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search sources..."
-          className="w-full rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none sm:w-64"
+          className="w-full rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none sm:w-64"
         />
       </div>
 
@@ -410,8 +410,8 @@ export default function ClearancePage() {
               return (
                 <Tr key={source.id}>
                   <Td>
-                    <div className="font-medium text-zinc-100">{source.name}</div>
-                    <div className="mt-0.5 flex flex-wrap gap-1 text-xs text-zinc-500">
+                    <div className="font-medium text-slate-100">{source.name}</div>
+                    <div className="mt-0.5 flex flex-wrap gap-1 text-xs text-slate-500">
                       {source.source_type && <span>{source.source_type}</span>}
                       {source.collection && <span>· {source.collection}</span>}
                       {typeof source.risk_score === 'number' && (
@@ -437,39 +437,39 @@ export default function ClearancePage() {
                         ))}
                       </div>
                     ) : status === 'pending' && !clearance ? (
-                      <span className="text-xs text-zinc-600">not evaluated</span>
+                      <span className="text-xs text-slate-600">not evaluated</span>
                     ) : (
                       <span className="text-xs text-emerald-400">all met</span>
                     )}
                   </Td>
                   <Td>
                     {clearance?.decided_at ? (
-                      <div className="text-xs text-zinc-400">
+                      <div className="text-xs text-slate-400">
                         <div>{fmtDate(clearance.decided_at)}</div>
                         {clearance.approver_role && (
-                          <div className="text-zinc-500">by {clearance.approver_role}</div>
+                          <div className="text-slate-500">by {clearance.approver_role}</div>
                         )}
                         {clearance.decision_rationale && (
-                          <div className="mt-0.5 max-w-[16rem] truncate text-zinc-500" title={clearance.decision_rationale}>
+                          <div className="mt-0.5 max-w-[16rem] truncate text-slate-500" title={clearance.decision_rationale}>
                             “{clearance.decision_rationale}”
                           </div>
                         )}
                       </div>
                     ) : (
-                      <span className="text-xs text-zinc-600">—</span>
+                      <span className="text-xs text-slate-600">—</span>
                     )}
                   </Td>
                   <Td>
                     {certs.length > 0 ? (
                       <button
                         onClick={() => setCertView(certs[0])}
-                        className="font-mono text-xs text-rose-400 hover:underline"
+                        className="font-mono text-xs text-fuchsia-400 hover:underline"
                         title="View certificate"
                       >
                         {shortHash(certs[0].certificate_hash)}
                       </button>
                     ) : (
-                      <span className="text-xs text-zinc-600">none</span>
+                      <span className="text-xs text-slate-600">none</span>
                     )}
                   </Td>
                   <Td className="text-right">
@@ -517,8 +517,8 @@ export default function ClearancePage() {
       {/* Certificates ledger */}
       <Card>
         <CardHeader className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-zinc-200">Issued certificates</h2>
-          <span className="text-xs text-zinc-500">{certificates.length} total</span>
+          <h2 className="text-sm font-semibold text-slate-200">Issued certificates</h2>
+          <span className="text-xs text-slate-500">{certificates.length} total</span>
         </CardHeader>
         <CardBody className="p-0">
           {certificates.length === 0 ? (
@@ -544,10 +544,10 @@ export default function ClearancePage() {
                 {certificates.map((c) => (
                   <Tr key={c.id}>
                     <Td>{sourceById.get(c.source_id)?.name ?? c.source_id}</Td>
-                    <Td className="font-mono text-xs text-rose-400">{shortHash(c.certificate_hash)}</Td>
+                    <Td className="font-mono text-xs text-fuchsia-400">{shortHash(c.certificate_hash)}</Td>
                     <Td>{c.issued_to ?? '—'}</Td>
                     <Td>{c.issued_by ?? '—'}</Td>
-                    <Td className="text-zinc-500">{fmtDate(c.created_at)}</Td>
+                    <Td className="text-slate-500">{fmtDate(c.created_at)}</Td>
                     <Td className="text-right">
                       <Button
                         variant="ghost"
@@ -582,29 +582,29 @@ export default function ClearancePage() {
         }
       >
         {reqDraft.length === 0 ? (
-          <p className="text-sm text-zinc-500">No requirement definitions available.</p>
+          <p className="text-sm text-slate-500">No requirement definitions available.</p>
         ) : (
           <div className="space-y-2">
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-slate-500">
               Toggle which checks a source must satisfy before the gate can clear it.
             </p>
             {reqDraft.map((r) => (
               <label
                 key={r.key}
-                className="flex cursor-pointer items-start gap-3 rounded-lg border border-zinc-800 bg-zinc-900/40 px-3 py-2.5 hover:border-zinc-700"
+                className="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-800 bg-slate-900/40 px-3 py-2.5 hover:border-slate-700"
               >
                 <input
                   type="checkbox"
                   checked={r.is_required}
                   onChange={() => toggleReqRequired(r.key)}
-                  className="mt-0.5 h-4 w-4 accent-rose-600"
+                  className="mt-0.5 h-4 w-4 accent-fuchsia-600"
                 />
                 <span>
-                  <span className="block text-sm font-medium text-zinc-200">{r.label}</span>
+                  <span className="block text-sm font-medium text-slate-200">{r.label}</span>
                   {r.description && (
-                    <span className="mt-0.5 block text-xs text-zinc-500">{r.description}</span>
+                    <span className="mt-0.5 block text-xs text-slate-500">{r.description}</span>
                   )}
-                  <span className="mt-0.5 block font-mono text-[11px] text-zinc-600">{r.key}</span>
+                  <span className="mt-0.5 block font-mono text-[11px] text-slate-600">{r.key}</span>
                 </span>
               </label>
             ))}
@@ -629,18 +629,18 @@ export default function ClearancePage() {
         }
       >
         <div className="space-y-4">
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-slate-500">
             Sign-off marks the source <span className="text-emerald-400">cleared</span> and issues a
             hashed certificate recorded in the ledger.
           </p>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Approver role
             </label>
             <select
               value={approveRole}
               onChange={(e) => setApproveRole(e.target.value)}
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
             >
               <option value="legal">legal</option>
               <option value="admin">admin</option>
@@ -649,18 +649,18 @@ export default function ClearancePage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Issued to (optional)
             </label>
             <input
               value={approveIssuedTo}
               onChange={(e) => setApproveIssuedTo(e.target.value)}
               placeholder="e.g. ML Platform Team"
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Decision rationale (optional)
             </label>
             <textarea
@@ -668,7 +668,7 @@ export default function ClearancePage() {
               onChange={(e) => setApproveRationale(e.target.value)}
               rows={3}
               placeholder="Why this source is cleared for training use…"
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
         </div>
@@ -691,20 +691,20 @@ export default function ClearancePage() {
         }
       >
         <div className="space-y-4">
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-slate-500">
             An admin override forces a decision against the gate result. The justification is logged
             to the immutable ledger.
           </p>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
-              Override justification <span className="text-rose-400">*</span>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              Override justification <span className="text-fuchsia-400">*</span>
             </label>
             <textarea
               value={overrideJustification}
               onChange={(e) => setOverrideJustification(e.target.value)}
               rows={4}
               placeholder="Document the business/legal reason for overriding the gate…"
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
         </div>
@@ -720,35 +720,35 @@ export default function ClearancePage() {
         {certView && (
           <div className="space-y-3 text-sm">
             <div>
-              <div className="text-xs uppercase tracking-wide text-zinc-500">Source</div>
-              <div className="text-zinc-200">
+              <div className="text-xs uppercase tracking-wide text-slate-500">Source</div>
+              <div className="text-slate-200">
                 {sourceById.get(certView.source_id)?.name ?? certView.source_id}
               </div>
             </div>
             <div>
-              <div className="text-xs uppercase tracking-wide text-zinc-500">Certificate hash</div>
-              <div className="break-all font-mono text-xs text-rose-400">
+              <div className="text-xs uppercase tracking-wide text-slate-500">Certificate hash</div>
+              <div className="break-all font-mono text-xs text-fuchsia-400">
                 {certView.certificate_hash}
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <div className="text-xs uppercase tracking-wide text-zinc-500">Issued to</div>
-                <div className="text-zinc-200">{certView.issued_to ?? '—'}</div>
+                <div className="text-xs uppercase tracking-wide text-slate-500">Issued to</div>
+                <div className="text-slate-200">{certView.issued_to ?? '—'}</div>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wide text-zinc-500">Issued by</div>
-                <div className="text-zinc-200">{certView.issued_by ?? '—'}</div>
+                <div className="text-xs uppercase tracking-wide text-slate-500">Issued by</div>
+                <div className="text-slate-200">{certView.issued_by ?? '—'}</div>
               </div>
             </div>
             <div>
-              <div className="text-xs uppercase tracking-wide text-zinc-500">Issued at</div>
-              <div className="text-zinc-200">{fmtDate(certView.created_at)}</div>
+              <div className="text-xs uppercase tracking-wide text-slate-500">Issued at</div>
+              <div className="text-slate-200">{fmtDate(certView.created_at)}</div>
             </div>
             {certView.payload && (
               <div>
-                <div className="mb-1 text-xs uppercase tracking-wide text-zinc-500">Payload</div>
-                <pre className="max-h-64 overflow-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 text-xs text-zinc-400">
+                <div className="mb-1 text-xs uppercase tracking-wide text-slate-500">Payload</div>
+                <pre className="max-h-64 overflow-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs text-slate-400">
                   {JSON.stringify(certView.payload, null, 2)}
                 </pre>
               </div>

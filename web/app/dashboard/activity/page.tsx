@@ -149,8 +149,8 @@ export default function ActivityFeedPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Audit Trail</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">Audit Trail</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Chronological record of every consequential action across the rights-clearance ledger.
           </p>
         </div>
@@ -164,12 +164,12 @@ export default function ActivityFeedPage() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search action, detail, entity..."
-          className="w-72 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+          className="w-72 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
         />
         <select
           value={entityTypeFilter}
           onChange={(e) => setEntityTypeFilter(e.target.value)}
-          className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+          className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
         >
           <option value="">All entity types</option>
           {entityTypes.map((t) => (
@@ -182,7 +182,7 @@ export default function ActivityFeedPage() {
           value={actorFilter}
           onChange={(e) => setActorFilter(e.target.value)}
           placeholder="Filter by actor id"
-          className="w-56 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+          className="w-56 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
         />
         {(q || actorFilter || entityTypeFilter) && (
           <Button
@@ -224,34 +224,34 @@ export default function ActivityFeedPage() {
         <div className="space-y-8">
           {groups.map(([label, rows]) => (
             <div key={label}>
-              <div className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500">{label}</div>
-              <ol className="relative space-y-0 border-l border-zinc-800 pl-6">
+              <div className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">{label}</div>
+              <ol className="relative space-y-0 border-l border-slate-800 pl-6">
                 {rows.map((e) => {
                   const href = entityHref(e.entity_type, e.entity_id)
                   return (
                     <li key={e.id} className="relative pb-5 last:pb-0">
-                      <span className="absolute -left-[1.6rem] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-zinc-950 bg-rose-500" />
+                      <span className="absolute -left-[1.6rem] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-slate-950 bg-fuchsia-500" />
                       <div className="flex flex-wrap items-center gap-2">
                         <Badge tone={actionTone(e.action)}>{e.action ?? 'event'}</Badge>
                         {e.entity_type && (
-                          <span className="text-xs text-zinc-500">
-                            on <span className="text-zinc-300">{e.entity_type}</span>
+                          <span className="text-xs text-slate-500">
+                            on <span className="text-slate-300">{e.entity_type}</span>
                           </span>
                         )}
                         {href ? (
-                          <Link href={href} className="font-mono text-xs text-rose-400 hover:underline">
+                          <Link href={href} className="font-mono text-xs text-fuchsia-400 hover:underline">
                             {e.entity_id?.slice(0, 8)}
                           </Link>
                         ) : (
-                          e.entity_id && <span className="font-mono text-xs text-zinc-500">{e.entity_id.slice(0, 8)}</span>
+                          e.entity_id && <span className="font-mono text-xs text-slate-500">{e.entity_id.slice(0, 8)}</span>
                         )}
-                        <span className="ml-auto text-xs text-zinc-600" title={new Date(e.created_at).toLocaleString()}>
+                        <span className="ml-auto text-xs text-slate-600" title={new Date(e.created_at).toLocaleString()}>
                           {relativeTime(e.created_at)}
                         </span>
                       </div>
-                      {e.detail && <p className="mt-1 text-sm text-zinc-300">{e.detail}</p>}
+                      {e.detail && <p className="mt-1 text-sm text-slate-300">{e.detail}</p>}
                       {e.actor_id && (
-                        <p className="mt-1 text-xs text-zinc-600">
+                        <p className="mt-1 text-xs text-slate-600">
                           actor <span className="font-mono">{e.actor_id.slice(0, 12)}</span>
                         </p>
                       )}

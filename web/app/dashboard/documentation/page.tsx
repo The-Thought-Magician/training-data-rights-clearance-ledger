@@ -57,13 +57,13 @@ function packTypeLabel(t: string): string {
 
 // Renders arbitrary JSON pack content as readable sections.
 function ContentView({ content }: { content: unknown }) {
-  if (content == null) return <p className="text-sm text-zinc-500">No content.</p>
+  if (content == null) return <p className="text-sm text-slate-500">No content.</p>
   if (typeof content === 'string') {
-    return <pre className="whitespace-pre-wrap break-words text-sm text-zinc-300">{content}</pre>
+    return <pre className="whitespace-pre-wrap break-words text-sm text-slate-300">{content}</pre>
   }
   if (Array.isArray(content)) {
     return (
-      <ul className="list-disc space-y-1 pl-5 text-sm text-zinc-300">
+      <ul className="list-disc space-y-1 pl-5 text-sm text-slate-300">
         {content.map((v, i) => (
           <li key={i}>{typeof v === 'object' ? <ContentView content={v} /> : String(v)}</li>
         ))}
@@ -74,21 +74,21 @@ function ContentView({ content }: { content: unknown }) {
     return (
       <div className="space-y-4">
         {Object.entries(content as Record<string, unknown>).map(([key, val]) => (
-          <div key={key} className="rounded-lg border border-zinc-800 bg-zinc-900/40 p-3">
-            <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-zinc-500">
+          <div key={key} className="rounded-lg border border-slate-800 bg-slate-900/40 p-3">
+            <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
               {key.replace(/_/g, ' ')}
             </div>
             {typeof val === 'object' && val !== null ? (
               <ContentView content={val} />
             ) : (
-              <div className="text-sm text-zinc-300">{String(val)}</div>
+              <div className="text-sm text-slate-300">{String(val)}</div>
             )}
           </div>
         ))}
       </div>
     )
   }
-  return <pre className="text-sm text-zinc-300">{String(content)}</pre>
+  return <pre className="text-sm text-slate-300">{String(content)}</pre>
 }
 
 export default function DocumentationPacksPage() {
@@ -220,8 +220,8 @@ export default function DocumentationPacksPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Documentation Packs</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">Documentation Packs</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Generate hash-stamped compliance dossiers, GPAI training summaries, and litigation evidence bundles.
           </p>
         </div>
@@ -240,12 +240,12 @@ export default function DocumentationPacksPage() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search title, subject..."
-          className="w-64 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+          className="w-64 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
         />
         <select
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
-          className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+          className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
         >
           <option value="">All pack types</option>
           {PACK_TYPES.map((p) => (
@@ -295,25 +295,25 @@ export default function DocumentationPacksPage() {
             {filtered.map((p) => (
               <Tr key={p.id}>
                 <Td>
-                  <div className="font-medium text-zinc-100">{p.title ?? packTypeLabel(p.pack_type)}</div>
+                  <div className="font-medium text-slate-100">{p.title ?? packTypeLabel(p.pack_type)}</div>
                 </Td>
                 <Td>
                   <Badge tone={packTypeTone(p.pack_type)}>{packTypeLabel(p.pack_type)}</Badge>
                 </Td>
                 <Td>
-                  <span className="text-zinc-300">{subjectLabel(p)}</span>
-                  <span className="ml-1 text-xs text-zinc-600">({p.subject_type})</span>
+                  <span className="text-slate-300">{subjectLabel(p)}</span>
+                  <span className="ml-1 text-xs text-slate-600">({p.subject_type})</span>
                 </Td>
                 <Td>
                   {p.content_hash ? (
-                    <span className="font-mono text-xs text-zinc-500" title={p.content_hash}>
+                    <span className="font-mono text-xs text-slate-500" title={p.content_hash}>
                       {p.content_hash.slice(0, 12)}…
                     </span>
                   ) : (
                     '—'
                   )}
                 </Td>
-                <Td className="text-xs text-zinc-500">{p.created_at.slice(0, 10)}</Td>
+                <Td className="text-xs text-slate-500">{p.created_at.slice(0, 10)}</Td>
                 <Td className="text-right">
                   <Button variant="ghost" className="px-2 py-1" onClick={() => void openView(p)}>
                     View
@@ -348,15 +348,15 @@ export default function DocumentationPacksPage() {
             </div>
           )}
           <div>
-            <span className="mb-2 block text-xs font-medium text-zinc-400">Pack type</span>
+            <span className="mb-2 block text-xs font-medium text-slate-400">Pack type</span>
             <div className="grid gap-2">
               {PACK_TYPES.map((p) => (
                 <label
                   key={p.value}
                   className={`flex cursor-pointer items-start gap-3 rounded-lg border p-3 transition-colors ${
                     genType === p.value
-                      ? 'border-rose-600 bg-rose-950/20'
-                      : 'border-zinc-800 bg-zinc-900/40 hover:border-zinc-700'
+                      ? 'border-fuchsia-600 bg-fuchsia-950/20'
+                      : 'border-slate-800 bg-slate-900/40 hover:border-slate-700'
                   }`}
                 >
                   <input
@@ -365,11 +365,11 @@ export default function DocumentationPacksPage() {
                     value={p.value}
                     checked={genType === p.value}
                     onChange={() => setGenType(p.value)}
-                    className="mt-1 h-4 w-4 accent-rose-600"
+                    className="mt-1 h-4 w-4 accent-fuchsia-600"
                   />
                   <div>
-                    <div className="text-sm font-medium text-zinc-100">{p.label}</div>
-                    <div className="text-xs text-zinc-500">{p.desc}</div>
+                    <div className="text-sm font-medium text-slate-100">{p.label}</div>
+                    <div className="text-xs text-slate-500">{p.desc}</div>
                   </div>
                 </label>
               ))}
@@ -377,7 +377,7 @@ export default function DocumentationPacksPage() {
           </div>
 
           <div>
-            <span className="mb-1 block text-xs font-medium text-zinc-400">Subject type</span>
+            <span className="mb-1 block text-xs font-medium text-slate-400">Subject type</span>
             <div className="flex gap-2">
               {(['model_version', 'source'] as const).map((st) => (
                 <button
@@ -389,8 +389,8 @@ export default function DocumentationPacksPage() {
                   }}
                   className={`rounded-lg border px-3 py-1.5 text-sm transition-colors ${
                     genSubjectType === st
-                      ? 'border-rose-600 bg-rose-950/20 text-rose-300'
-                      : 'border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-zinc-200'
+                      ? 'border-fuchsia-600 bg-fuchsia-950/20 text-fuchsia-300'
+                      : 'border-slate-800 bg-slate-900 text-slate-400 hover:text-slate-200'
                   }`}
                 >
                   {st === 'model_version' ? 'Model version' : 'Source'}
@@ -400,13 +400,13 @@ export default function DocumentationPacksPage() {
           </div>
 
           <label className="block">
-            <span className="mb-1 block text-xs font-medium text-zinc-400">
-              Subject<span className="text-rose-500"> *</span>
+            <span className="mb-1 block text-xs font-medium text-slate-400">
+              Subject<span className="text-fuchsia-500"> *</span>
             </span>
             <select
               value={genSubjectId}
               onChange={(e) => setGenSubjectId(e.target.value)}
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
             >
               <option value="">
                 {subjectOptions.length ? 'Select…' : `No ${genSubjectType === 'model_version' ? 'model versions' : 'sources'} available`}
@@ -437,15 +437,15 @@ export default function DocumentationPacksPage() {
           <div className="space-y-4">
             <div className="flex flex-wrap items-center gap-2">
               <Badge tone={packTypeTone(viewing.pack_type)}>{packTypeLabel(viewing.pack_type)}</Badge>
-              <span className="text-xs text-zinc-500">
+              <span className="text-xs text-slate-500">
                 {subjectLabel(viewing)} · {viewing.subject_type}
               </span>
-              <span className="ml-auto text-xs text-zinc-600">{viewing.created_at.slice(0, 19).replace('T', ' ')}</span>
+              <span className="ml-auto text-xs text-slate-600">{viewing.created_at.slice(0, 19).replace('T', ' ')}</span>
             </div>
             {viewing.content_hash && (
-              <div className="rounded-lg border border-zinc-800 bg-zinc-900/40 px-3 py-2">
-                <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">Content hash</div>
-                <div className="mt-0.5 break-all font-mono text-xs text-zinc-300">{viewing.content_hash}</div>
+              <div className="rounded-lg border border-slate-800 bg-slate-900/40 px-3 py-2">
+                <div className="text-xs font-medium uppercase tracking-wide text-slate-500">Content hash</div>
+                <div className="mt-0.5 break-all font-mono text-xs text-slate-300">{viewing.content_hash}</div>
               </div>
             )}
             {viewError && (

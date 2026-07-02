@@ -182,8 +182,8 @@ export default function LicenseTemplatesPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">License Template Library</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">License Template Library</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Reusable license profiles to apply consistent rights terms to new data sources.
           </p>
         </div>
@@ -200,7 +200,7 @@ export default function LicenseTemplatesPage() {
         value={q}
         onChange={(e) => setQ(e.target.value)}
         placeholder="Search templates..."
-        className="w-64 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+        className="w-64 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
       />
 
       {loading ? (
@@ -229,7 +229,7 @@ export default function LicenseTemplatesPage() {
               <CardBody className="flex flex-1 flex-col gap-3">
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <h3 className="font-semibold text-zinc-100">{t.name}</h3>
+                    <h3 className="font-semibold text-slate-100">{t.name}</h3>
                     {t.license_type && (
                       <Badge tone="purple" className="mt-1">
                         {t.license_type}
@@ -244,7 +244,7 @@ export default function LicenseTemplatesPage() {
                     Delete
                   </Button>
                 </div>
-                {t.description && <p className="text-sm text-zinc-500">{t.description}</p>}
+                {t.description && <p className="text-sm text-slate-500">{t.description}</p>}
                 <div className="mt-auto flex flex-wrap gap-1.5">
                   {perms.map(([key, label]) => (
                     <Badge key={key} tone={t[key] ? 'green' : 'zinc'}>
@@ -280,13 +280,13 @@ export default function LicenseTemplatesPage() {
             </div>
           )}
           <div>
-            <span className="mb-1 block text-xs font-medium text-zinc-400">Start from a preset</span>
+            <span className="mb-1 block text-xs font-medium text-slate-400">Start from a preset</span>
             <div className="flex flex-wrap gap-1.5">
               {Object.keys(presets).map((name) => (
                 <button
                   key={name}
                   onClick={() => applyPreset(name)}
-                  className="rounded-md border border-zinc-700 bg-zinc-800 px-2 py-1 text-xs text-zinc-300 hover:border-rose-600 hover:text-rose-300"
+                  className="rounded-md border border-slate-700 bg-slate-800 px-2 py-1 text-xs text-slate-300 hover:border-fuchsia-600 hover:text-fuchsia-300"
                 >
                   {name}
                 </button>
@@ -295,8 +295,8 @@ export default function LicenseTemplatesPage() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <label className="block">
-              <span className="mb-1 block text-xs font-medium text-zinc-400">
-                Name<span className="text-rose-500"> *</span>
+              <span className="mb-1 block text-xs font-medium text-slate-400">
+                Name<span className="text-fuchsia-500"> *</span>
               </span>
               <input
                 value={form.name}
@@ -306,7 +306,7 @@ export default function LicenseTemplatesPage() {
               />
             </label>
             <label className="block">
-              <span className="mb-1 block text-xs font-medium text-zinc-400">License type</span>
+              <span className="mb-1 block text-xs font-medium text-slate-400">License type</span>
               <select
                 value={form.license_type}
                 onChange={(e) => setForm({ ...form, license_type: e.target.value })}
@@ -322,21 +322,21 @@ export default function LicenseTemplatesPage() {
               </select>
             </label>
           </div>
-          <div className="grid grid-cols-2 gap-2 rounded-lg border border-zinc-800 bg-zinc-900/40 p-3">
+          <div className="grid grid-cols-2 gap-2 rounded-lg border border-slate-800 bg-slate-900/40 p-3">
             {perms.map(([key, label]) => (
-              <label key={key} className="flex items-center gap-2 text-sm text-zinc-300">
+              <label key={key} className="flex items-center gap-2 text-sm text-slate-300">
                 <input
                   type="checkbox"
                   checked={form[key] as boolean}
                   onChange={(e) => setForm({ ...form, [key]: e.target.checked })}
-                  className="h-4 w-4 accent-rose-600"
+                  className="h-4 w-4 accent-fuchsia-600"
                 />
                 Permits {label.toLowerCase()}
               </label>
             ))}
           </div>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium text-zinc-400">Description</span>
+            <span className="mb-1 block text-xs font-medium text-slate-400">Description</span>
             <textarea
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
@@ -350,4 +350,4 @@ export default function LicenseTemplatesPage() {
 }
 
 const inputCls =
-  'w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none'
+  'w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none'

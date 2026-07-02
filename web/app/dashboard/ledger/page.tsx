@@ -139,8 +139,8 @@ export default function LedgerPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Evidence Ledger</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">Evidence Ledger</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Append-only, hash-chained record of every consequential action. Each entry links to the
             previous via its hash, making tampering detectable.
           </p>
@@ -173,7 +173,7 @@ export default function LedgerPage() {
               <div className={`text-sm font-semibold ${verified ? 'text-emerald-300' : 'text-red-300'}`}>
                 {verified ? 'Hash chain intact' : 'Hash chain broken'}
               </div>
-              <div className="text-xs text-zinc-400">
+              <div className="text-xs text-slate-400">
                 {verified
                   ? `All ${verify.count} entries verify against their predecessor hashes.`
                   : brokenAt != null
@@ -199,7 +199,7 @@ export default function LedgerPage() {
           <select
             value={entityTypeFilter}
             onChange={(e) => setEntityTypeFilter(e.target.value)}
-            className="rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+            className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
           >
             <option value="all">All entity types</option>
             {entityTypes.map((t) => (
@@ -211,7 +211,7 @@ export default function LedgerPage() {
           <select
             value={actionFilter}
             onChange={(e) => setActionFilter(e.target.value)}
-            className="rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+            className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
           >
             <option value="all">All actions</option>
             {actions.map((a) => (
@@ -225,7 +225,7 @@ export default function LedgerPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search seq, hash, entity, actor..."
-          className="w-full rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none lg:w-72"
+          className="w-full rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none lg:w-72"
         />
       </div>
 
@@ -241,8 +241,8 @@ export default function LedgerPage() {
       ) : (
         <Card className="overflow-hidden">
           <CardHeader className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-zinc-200">Chain entries</h2>
-            <span className="text-xs text-zinc-500">
+            <h2 className="text-sm font-semibold text-slate-200">Chain entries</h2>
+            <span className="text-xs text-slate-500">
               showing {filtered.length} of {entries.length}
             </span>
           </CardHeader>
@@ -264,25 +264,25 @@ export default function LedgerPage() {
                   const isBreak = brokenAt != null && e.seq === brokenAt
                   return (
                     <Tr key={e.id} className={isBreak ? 'bg-red-950/30' : ''}>
-                      <Td className="font-mono text-xs tabular-nums text-zinc-400">#{e.seq}</Td>
+                      <Td className="font-mono text-xs tabular-nums text-slate-400">#{e.seq}</Td>
                       <Td>{e.action ? <Badge tone="blue">{e.action}</Badge> : '—'}</Td>
                       <Td>
-                        <div className="text-zinc-200">{e.entity_type ?? '—'}</div>
+                        <div className="text-slate-200">{e.entity_type ?? '—'}</div>
                         {e.entity_id && (
-                          <div className="font-mono text-[11px] text-zinc-600">
+                          <div className="font-mono text-[11px] text-slate-600">
                             {String(e.entity_id).slice(0, 12)}
                           </div>
                         )}
                       </Td>
-                      <Td className="text-xs text-zinc-500">{e.actor_id ?? '—'}</Td>
+                      <Td className="text-xs text-slate-500">{e.actor_id ?? '—'}</Td>
                       <Td>
                         <div className="flex items-center gap-1 font-mono text-[11px]">
-                          <span className="text-zinc-600">{shortHash(e.prev_hash)}</span>
-                          <span className="text-zinc-700">→</span>
-                          <span className="text-rose-400">{shortHash(e.entry_hash)}</span>
+                          <span className="text-slate-600">{shortHash(e.prev_hash)}</span>
+                          <span className="text-slate-700">→</span>
+                          <span className="text-fuchsia-400">{shortHash(e.entry_hash)}</span>
                         </div>
                       </Td>
-                      <Td className="text-xs text-zinc-500">{fmtDate(e.created_at)}</Td>
+                      <Td className="text-xs text-slate-500">{fmtDate(e.created_at)}</Td>
                       <Td className="text-right">
                         <Button
                           variant="ghost"
@@ -313,40 +313,40 @@ export default function LedgerPage() {
           <div className="space-y-3 text-sm">
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <div className="text-xs uppercase tracking-wide text-zinc-500">Action</div>
-                <div className="text-zinc-200">{detail.action ?? '—'}</div>
+                <div className="text-xs uppercase tracking-wide text-slate-500">Action</div>
+                <div className="text-slate-200">{detail.action ?? '—'}</div>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wide text-zinc-500">Recorded at</div>
-                <div className="text-zinc-200">{fmtDate(detail.created_at)}</div>
+                <div className="text-xs uppercase tracking-wide text-slate-500">Recorded at</div>
+                <div className="text-slate-200">{fmtDate(detail.created_at)}</div>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wide text-zinc-500">Entity type</div>
-                <div className="text-zinc-200">{detail.entity_type ?? '—'}</div>
+                <div className="text-xs uppercase tracking-wide text-slate-500">Entity type</div>
+                <div className="text-slate-200">{detail.entity_type ?? '—'}</div>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wide text-zinc-500">Actor</div>
-                <div className="text-zinc-200">{detail.actor_id ?? '—'}</div>
+                <div className="text-xs uppercase tracking-wide text-slate-500">Actor</div>
+                <div className="text-slate-200">{detail.actor_id ?? '—'}</div>
               </div>
             </div>
             {detail.entity_id && (
               <div>
-                <div className="text-xs uppercase tracking-wide text-zinc-500">Entity id</div>
-                <div className="break-all font-mono text-xs text-zinc-300">{detail.entity_id}</div>
+                <div className="text-xs uppercase tracking-wide text-slate-500">Entity id</div>
+                <div className="break-all font-mono text-xs text-slate-300">{detail.entity_id}</div>
               </div>
             )}
             <div>
-              <div className="text-xs uppercase tracking-wide text-zinc-500">Previous hash</div>
-              <div className="break-all font-mono text-xs text-zinc-500">{detail.prev_hash ?? '— (genesis)'}</div>
+              <div className="text-xs uppercase tracking-wide text-slate-500">Previous hash</div>
+              <div className="break-all font-mono text-xs text-slate-500">{detail.prev_hash ?? '— (genesis)'}</div>
             </div>
             <div>
-              <div className="text-xs uppercase tracking-wide text-zinc-500">Entry hash</div>
-              <div className="break-all font-mono text-xs text-rose-400">{detail.entry_hash ?? '—'}</div>
+              <div className="text-xs uppercase tracking-wide text-slate-500">Entry hash</div>
+              <div className="break-all font-mono text-xs text-fuchsia-400">{detail.entry_hash ?? '—'}</div>
             </div>
             {detail.payload && (
               <div>
-                <div className="mb-1 text-xs uppercase tracking-wide text-zinc-500">Payload</div>
-                <pre className="max-h-64 overflow-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 text-xs text-zinc-400">
+                <div className="mb-1 text-xs uppercase tracking-wide text-slate-500">Payload</div>
+                <pre className="max-h-64 overflow-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs text-slate-400">
                   {JSON.stringify(detail.payload, null, 2)}
                 </pre>
               </div>

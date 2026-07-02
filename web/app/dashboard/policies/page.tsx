@@ -310,8 +310,8 @@ export default function PoliciesPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Policy Engine</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">Policy Engine</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Author rules that evaluate data sources against governance conditions. Active policies
             flag, require review, or block sources and record violations.
           </p>
@@ -347,7 +347,7 @@ export default function PoliciesPage() {
           <button
             onClick={() => setView('policies')}
             className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-              view === 'policies' ? 'bg-rose-600 text-white' : 'bg-zinc-800/60 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+              view === 'policies' ? 'bg-fuchsia-600 text-white' : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
             }`}
           >
             Policies ({counts.total})
@@ -355,7 +355,7 @@ export default function PoliciesPage() {
           <button
             onClick={() => setView('violations')}
             className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-              view === 'violations' ? 'bg-rose-600 text-white' : 'bg-zinc-800/60 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+              view === 'violations' ? 'bg-fuchsia-600 text-white' : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
             }`}
           >
             Violations ({counts.open})
@@ -366,7 +366,7 @@ export default function PoliciesPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search policies..."
-            className="w-full rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none sm:w-64"
+            className="w-full rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none sm:w-64"
           />
         )}
         {view === 'violations' && (
@@ -376,7 +376,7 @@ export default function PoliciesPage() {
                 key={f}
                 onClick={() => setViolationFilter(f)}
                 className={`rounded-lg px-3 py-1.5 text-sm font-medium capitalize transition-colors ${
-                  violationFilter === f ? 'bg-zinc-700 text-white' : 'bg-zinc-800/60 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+                  violationFilter === f ? 'bg-slate-700 text-white' : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
                 }`}
               >
                 {f}
@@ -403,29 +403,29 @@ export default function PoliciesPage() {
                   <CardHeader className="flex items-start justify-between gap-3">
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="text-sm font-semibold text-zinc-100">{p.name}</h3>
+                        <h3 className="text-sm font-semibold text-slate-100">{p.name}</h3>
                         <Badge tone={actionTone(p.action)}>{p.action}</Badge>
                         {p.severity && <Badge tone={severityTone(p.severity)}>{p.severity}</Badge>}
                         <Badge tone={p.is_active ? 'green' : 'zinc'}>
                           {p.is_active ? 'active' : 'inactive'}
                         </Badge>
                       </div>
-                      {p.description && <p className="mt-1 text-xs text-zinc-500">{p.description}</p>}
+                      {p.description && <p className="mt-1 text-xs text-slate-500">{p.description}</p>}
                     </div>
                   </CardHeader>
                   <CardBody className="space-y-3">
                     <div>
-                      <div className="mb-1 text-xs font-medium uppercase tracking-wide text-zinc-500">
+                      <div className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-500">
                         Conditions
                       </div>
                       {conds.length === 0 ? (
-                        <span className="text-xs text-zinc-600">No conditions</span>
+                        <span className="text-xs text-slate-600">No conditions</span>
                       ) : (
                         <div className="flex flex-wrap gap-1.5">
                           {conds.map((c, i) => (
                             <span
                               key={i}
-                              className="rounded-md border border-zinc-800 bg-zinc-950 px-2 py-0.5 font-mono text-[11px] text-zinc-400"
+                              className="rounded-md border border-slate-800 bg-slate-950 px-2 py-0.5 font-mono text-[11px] text-slate-400"
                             >
                               {c.field} {c.op} {String(c.value)}
                             </span>
@@ -434,7 +434,7 @@ export default function PoliciesPage() {
                       )}
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-zinc-500">
+                      <span className="text-xs text-slate-500">
                         {openVios > 0 ? (
                           <span className="text-red-400">{openVios} open violation{openVios === 1 ? '' : 's'}</span>
                         ) : (
@@ -494,16 +494,16 @@ export default function PoliciesPage() {
                 <Tr key={v.id}>
                   <Td>
                     <div className="flex items-center gap-2">
-                      <span className="font-medium text-zinc-100">{pol?.name ?? v.policy_id.slice(0, 8)}</span>
+                      <span className="font-medium text-slate-100">{pol?.name ?? v.policy_id.slice(0, 8)}</span>
                       {pol && <Badge tone={actionTone(pol.action)}>{pol.action}</Badge>}
                     </div>
                   </Td>
-                  <Td className="text-zinc-300">{sourceById.get(v.source_id)?.name ?? v.source_id.slice(0, 8)}</Td>
-                  <Td className="max-w-[24rem] text-xs text-zinc-400">{v.detail ?? '—'}</Td>
+                  <Td className="text-slate-300">{sourceById.get(v.source_id)?.name ?? v.source_id.slice(0, 8)}</Td>
+                  <Td className="max-w-[24rem] text-xs text-slate-400">{v.detail ?? '—'}</Td>
                   <Td>
                     <Badge tone={v.resolved ? 'green' : 'red'}>{v.resolved ? 'resolved' : 'open'}</Badge>
                   </Td>
-                  <Td className="text-xs text-zinc-500">{fmtDate(v.detected_at ?? v.created_at)}</Td>
+                  <Td className="text-xs text-slate-500">{fmtDate(v.detected_at ?? v.created_at)}</Td>
                 </Tr>
               )
             })}
@@ -530,36 +530,36 @@ export default function PoliciesPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
-              Name <span className="text-rose-400">*</span>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              Name <span className="text-fuchsia-400">*</span>
             </label>
             <input
               value={eName}
               onChange={(e) => setEName(e.target.value)}
               placeholder="e.g. Block uncleared scraped sources"
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Description (optional)
             </label>
             <textarea
               value={eDescription}
               onChange={(e) => setEDescription(e.target.value)}
               rows={2}
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
                 Action
               </label>
               <select
                 value={eAction}
                 onChange={(e) => setEAction(e.target.value)}
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+                className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
               >
                 {ACTIONS.map((a) => (
                   <option key={a} value={a}>
@@ -569,13 +569,13 @@ export default function PoliciesPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
                 Severity
               </label>
               <select
                 value={eSeverity}
                 onChange={(e) => setESeverity(e.target.value)}
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+                className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
               >
                 {SEVERITIES.map((s) => (
                   <option key={s} value={s}>
@@ -585,18 +585,18 @@ export default function PoliciesPage() {
               </select>
             </div>
           </div>
-          <label className="flex cursor-pointer items-center gap-2 text-sm text-zinc-300">
+          <label className="flex cursor-pointer items-center gap-2 text-sm text-slate-300">
             <input
               type="checkbox"
               checked={eActive}
               onChange={(e) => setEActive(e.target.checked)}
-              className="h-4 w-4 accent-rose-600"
+              className="h-4 w-4 accent-fuchsia-600"
             />
             Active (evaluated against sources)
           </label>
           <div>
             <div className="mb-1 flex items-center justify-between">
-              <label className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <label className="text-xs font-medium uppercase tracking-wide text-slate-500">
                 Conditions (all must match)
               </label>
               <Button variant="ghost" className="px-2 py-1 text-xs" onClick={addCond}>
@@ -609,7 +609,7 @@ export default function PoliciesPage() {
                   <select
                     value={c.field}
                     onChange={(e) => updateCond(i, { field: e.target.value })}
-                    className="rounded-lg border border-zinc-800 bg-zinc-900 px-2 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+                    className="rounded-lg border border-slate-800 bg-slate-900 px-2 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
                   >
                     {FIELDS.map((f) => (
                       <option key={f} value={f}>
@@ -620,7 +620,7 @@ export default function PoliciesPage() {
                   <select
                     value={c.op}
                     onChange={(e) => updateCond(i, { op: e.target.value })}
-                    className="rounded-lg border border-zinc-800 bg-zinc-900 px-2 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+                    className="rounded-lg border border-slate-800 bg-slate-900 px-2 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
                   >
                     {OPS.map((o) => (
                       <option key={o} value={o}>
@@ -632,12 +632,12 @@ export default function PoliciesPage() {
                     value={c.value}
                     onChange={(e) => updateCond(i, { value: e.target.value })}
                     placeholder="value"
-                    className="flex-1 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+                    className="flex-1 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
                   />
                   {eConditions.length > 1 && (
                     <button
                       onClick={() => removeCond(i)}
-                      className="rounded-md px-2 py-1 text-zinc-500 hover:bg-zinc-800 hover:text-red-300"
+                      className="rounded-md px-2 py-1 text-slate-500 hover:bg-slate-800 hover:text-red-300"
                       aria-label="Remove condition"
                     >
                       ✕
@@ -667,20 +667,20 @@ export default function PoliciesPage() {
         }
       >
         <div className="space-y-4">
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-slate-500">
             Runs all active policies against the selected source and records any violations.
           </p>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Source
             </label>
             {sources.length === 0 ? (
-              <p className="text-sm text-zinc-500">No sources available. Register a source first.</p>
+              <p className="text-sm text-slate-500">No sources available. Register a source first.</p>
             ) : (
               <select
                 value={evalSourceId}
                 onChange={(e) => setEvalSourceId(e.target.value)}
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+                className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
               >
                 <option value="">Select a source…</option>
                 {sources.map((s) => (

@@ -158,8 +158,8 @@ export default function NotificationsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Notifications &amp; Tasks</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">Notifications &amp; Tasks</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Stay on top of clearance alerts and the remediation, approval, and review work assigned to you.
           </p>
         </div>
@@ -186,17 +186,17 @@ export default function NotificationsPage() {
         <Card className="lg:col-span-2">
           <CardHeader className="flex items-center justify-between gap-2">
             <div>
-              <h2 className="text-sm font-semibold text-zinc-100">Notifications</h2>
-              <p className="text-xs text-zinc-500">{notifications.length} total · {unreadCount} unread</p>
+              <h2 className="text-sm font-semibold text-slate-100">Notifications</h2>
+              <p className="text-xs text-slate-500">{notifications.length} total · {unreadCount} unread</p>
             </div>
             <div className="flex items-center gap-2">
-              <div className="flex rounded-lg border border-zinc-700 p-0.5 text-xs">
+              <div className="flex rounded-lg border border-slate-700 p-0.5 text-xs">
                 {(['all', 'unread'] as const).map((f) => (
                   <button
                     key={f}
                     onClick={() => setNotifFilter(f)}
                     className={`rounded-md px-2.5 py-1 capitalize transition-colors ${
-                      notifFilter === f ? 'bg-rose-600 text-white' : 'text-zinc-400 hover:text-zinc-200'
+                      notifFilter === f ? 'bg-fuchsia-600 text-white' : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
                     {f}
@@ -222,31 +222,31 @@ export default function NotificationsPage() {
                 />
               </div>
             ) : (
-              <ul className="divide-y divide-zinc-800">
+              <ul className="divide-y divide-slate-800">
                 {visibleNotifs.map((n) => {
                   const inner = (
                     <div className="flex items-start gap-3 px-5 py-4">
                       <span
-                        className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${n.is_read ? 'bg-zinc-700' : 'bg-rose-500'}`}
+                        className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${n.is_read ? 'bg-slate-700' : 'bg-fuchsia-500'}`}
                         aria-hidden
                       />
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
                           {n.kind && <Badge tone="zinc" className="capitalize">{n.kind}</Badge>}
-                          <span className={`truncate text-sm font-medium ${n.is_read ? 'text-zinc-400' : 'text-zinc-100'}`}>
+                          <span className={`truncate text-sm font-medium ${n.is_read ? 'text-slate-400' : 'text-slate-100'}`}>
                             {n.title || 'Notification'}
                           </span>
                         </div>
-                        {n.body && <p className="mt-1 text-sm text-zinc-500">{n.body}</p>}
-                        <div className="mt-1 flex items-center gap-3 text-xs text-zinc-600">
+                        {n.body && <p className="mt-1 text-sm text-slate-500">{n.body}</p>}
+                        <div className="mt-1 flex items-center gap-3 text-xs text-slate-600">
                           <span>{fmtRelative(n.created_at)}</span>
-                          {n.link && <span className="text-rose-400">Open ↗</span>}
+                          {n.link && <span className="text-fuchsia-400">Open ↗</span>}
                         </div>
                       </div>
                       {!n.is_read && (
                         <button
                           onClick={(e) => { e.preventDefault(); markRead(n) }}
-                          className="shrink-0 rounded-md px-2 py-1 text-xs text-zinc-500 hover:bg-zinc-800 hover:text-zinc-200"
+                          className="shrink-0 rounded-md px-2 py-1 text-xs text-slate-500 hover:bg-slate-800 hover:text-slate-200"
                         >
                           Mark read
                         </button>
@@ -254,7 +254,7 @@ export default function NotificationsPage() {
                     </div>
                   )
                   return (
-                    <li key={n.id} className="hover:bg-zinc-900/40">
+                    <li key={n.id} className="hover:bg-slate-900/40">
                       {n.link ? (
                         <Link href={n.link} onClick={() => markRead(n)} className="block">
                           {inner}
@@ -276,8 +276,8 @@ export default function NotificationsPage() {
         <Card className="lg:col-span-3">
           <CardHeader className="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <h2 className="text-sm font-semibold text-zinc-100">My Tasks</h2>
-              <p className="text-xs text-zinc-500">{tasks.length} total</p>
+              <h2 className="text-sm font-semibold text-slate-100">My Tasks</h2>
+              <p className="text-xs text-slate-500">{tasks.length} total</p>
             </div>
             <div className="flex flex-wrap items-center gap-1.5">
               <Chip active={taskFilter === 'all'} onClick={() => setTaskFilter('all')}>All ({taskCounts.all})</Chip>
@@ -319,10 +319,10 @@ export default function NotificationsPage() {
                     return (
                       <Tr key={t.id}>
                         <Td>
-                          <div className="font-medium text-zinc-100">{t.title || 'Untitled task'}</div>
-                          {t.description && <div className="mt-0.5 max-w-md truncate text-xs text-zinc-500">{t.description}</div>}
+                          <div className="font-medium text-slate-100">{t.title || 'Untitled task'}</div>
+                          {t.description && <div className="mt-0.5 max-w-md truncate text-xs text-slate-500">{t.description}</div>}
                           {t.entity_type && (
-                            <div className="mt-0.5 text-xs text-zinc-600">
+                            <div className="mt-0.5 text-xs text-slate-600">
                               {t.entity_type}{t.entity_id ? ` · ${t.entity_id.slice(0, 8)}` : ''}
                             </div>
                           )}
@@ -330,17 +330,17 @@ export default function NotificationsPage() {
                         <Td><Badge tone="zinc" className="capitalize">{t.task_type || 'task'}</Badge></Td>
                         <Td>
                           {t.due_date ? (
-                            <span className={overdue ? 'font-medium text-red-400' : 'text-zinc-400'}>
+                            <span className={overdue ? 'font-medium text-red-400' : 'text-slate-400'}>
                               {fmtDate(t.due_date)}{overdue && ' (overdue)'}
                             </span>
-                          ) : <span className="text-zinc-600">—</span>}
+                          ) : <span className="text-slate-600">—</span>}
                         </Td>
                         <Td><Badge>{t.status || 'open'}</Badge></Td>
                         <Td className="text-right">
                           <select
                             value={t.status || 'open'}
                             onChange={(e) => setTaskStatus(t, e.target.value)}
-                            className="rounded-md border border-zinc-700 bg-zinc-900 px-2 py-1 text-xs text-zinc-200 focus:border-rose-600 focus:outline-none"
+                            className="rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-xs text-slate-200 focus:border-fuchsia-600 focus:outline-none"
                             aria-label="Set task status"
                           >
                             {TASK_STATUSES.map((st) => <option key={st} value={st}>{st}</option>)}
@@ -386,8 +386,8 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
       onClick={onClick}
       className={`rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors ${
         active
-          ? 'border-rose-600 bg-rose-950/40 text-rose-300'
-          : 'border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200'
+          ? 'border-fuchsia-600 bg-fuchsia-950/40 text-fuchsia-300'
+          : 'border-slate-700 bg-slate-900 text-slate-400 hover:border-slate-600 hover:text-slate-200'
       }`}
     >
       {children}
@@ -396,14 +396,14 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
 }
 
 const inputCls =
-  'w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-rose-600 focus:outline-none'
+  'w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-fuchsia-600 focus:outline-none'
 
 function Field({ label, hint, required, children }: { label: string; hint?: string; required?: boolean; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 flex items-center gap-1 text-xs font-medium text-zinc-400">
-        {label} {required && <span className="text-rose-500">*</span>}
-        {hint && <span className="font-normal text-zinc-600">— {hint}</span>}
+      <span className="mb-1 flex items-center gap-1 text-xs font-medium text-slate-400">
+        {label} {required && <span className="text-fuchsia-500">*</span>}
+        {hint && <span className="font-normal text-slate-600">— {hint}</span>}
       </span>
       {children}
     </label>

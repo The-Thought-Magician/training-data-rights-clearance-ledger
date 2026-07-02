@@ -68,7 +68,7 @@ function riskTone(p: number): 'green' | 'amber' | 'red' {
 const toneBar: Record<'green' | 'amber' | 'red', string> = {
   green: 'bg-emerald-500',
   amber: 'bg-amber-500',
-  red: 'bg-rose-500',
+  red: 'bg-fuchsia-500',
 }
 
 function RiskBar({ value, label }: { value: number | null | undefined; label?: string }) {
@@ -76,10 +76,10 @@ function RiskBar({ value, label }: { value: number | null | undefined; label?: s
   const tone = riskTone(p)
   return (
     <div className="flex items-center gap-2">
-      <div className="h-2 w-full max-w-[140px] overflow-hidden rounded-full bg-zinc-800">
+      <div className="h-2 w-full max-w-[140px] overflow-hidden rounded-full bg-slate-800">
         <div className={`h-full rounded-full ${toneBar[tone]}`} style={{ width: `${p}%` }} />
       </div>
-      <span className={`w-9 text-right text-xs tabular-nums ${tone === 'red' ? 'text-rose-400' : tone === 'amber' ? 'text-amber-400' : 'text-emerald-400'}`}>
+      <span className={`w-9 text-right text-xs tabular-nums ${tone === 'red' ? 'text-fuchsia-400' : tone === 'amber' ? 'text-amber-400' : 'text-emerald-400'}`}>
         {p}
         {label ?? ''}
       </span>
@@ -219,8 +219,8 @@ export default function RiskDashboardPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Portfolio Risk</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">Portfolio Risk</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Composite rights-clearance risk across every training data source, rolled up by license, copyright, PII, and opt-out exposure.
           </p>
         </div>
@@ -250,11 +250,11 @@ export default function RiskDashboardPage() {
         {/* Status distribution */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-200">Sources by Status</h2>
+            <h2 className="text-sm font-semibold text-slate-200">Sources by Status</h2>
           </CardHeader>
           <CardBody>
             {statusCounts.length === 0 ? (
-              <p className="text-sm text-zinc-500">No source status data.</p>
+              <p className="text-sm text-slate-500">No source status data.</p>
             ) : (
               <div className="space-y-3">
                 {statusCounts.map((r) => {
@@ -264,22 +264,22 @@ export default function RiskDashboardPage() {
                       <div className="w-24 shrink-0">
                         <Badge>{r.status}</Badge>
                       </div>
-                      <div className="h-3 w-full overflow-hidden rounded-full bg-zinc-800">
+                      <div className="h-3 w-full overflow-hidden rounded-full bg-slate-800">
                         <div
                           className={`h-full rounded-full ${
                             r.status === 'blocked'
-                              ? 'bg-rose-500'
+                              ? 'bg-fuchsia-500'
                               : r.status === 'cleared'
                               ? 'bg-emerald-500'
                               : r.status === 'review'
                               ? 'bg-amber-500'
-                              : 'bg-zinc-500'
+                              : 'bg-slate-500'
                           }`}
                           style={{ width: `${p}%` }}
                         />
                       </div>
-                      <span className="w-16 shrink-0 text-right text-sm tabular-nums text-zinc-300">
-                        {r.count} <span className="text-zinc-600">({p}%)</span>
+                      <span className="w-16 shrink-0 text-right text-sm tabular-nums text-slate-300">
+                        {r.count} <span className="text-slate-600">({p}%)</span>
                       </span>
                     </div>
                   )
@@ -292,7 +292,7 @@ export default function RiskDashboardPage() {
         {/* Dimension averages */}
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-200">Avg Risk by Dimension</h2>
+            <h2 className="text-sm font-semibold text-slate-200">Avg Risk by Dimension</h2>
           </CardHeader>
           <CardBody>
             <div className="space-y-4">
@@ -303,7 +303,7 @@ export default function RiskDashboardPage() {
                 ['Opt-out', dimensionAverages.optout],
               ] as [string, number][]).map(([label, v]) => (
                 <div key={label}>
-                  <div className="mb-1 flex justify-between text-xs text-zinc-400">
+                  <div className="mb-1 flex justify-between text-xs text-slate-400">
                     <span>{label}</span>
                     <span className="tabular-nums">{v}</span>
                   </div>
@@ -319,22 +319,22 @@ export default function RiskDashboardPage() {
         {/* Blocked */}
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-200">Blocked Sources</h2>
+            <h2 className="text-sm font-semibold text-slate-200">Blocked Sources</h2>
           </CardHeader>
           <CardBody>
             {blocked.length === 0 ? (
-              <p className="text-sm text-zinc-500">No blocked sources.</p>
+              <p className="text-sm text-slate-500">No blocked sources.</p>
             ) : (
-              <ul className="divide-y divide-zinc-800">
+              <ul className="divide-y divide-slate-800">
                 {blocked.map((b) => (
                   <li key={b.id} className="flex items-center justify-between py-2">
-                    <Link href={`/dashboard/sources/${b.id}`} className="text-sm text-zinc-200 hover:text-rose-300">
+                    <Link href={`/dashboard/sources/${b.id}`} className="text-sm text-slate-200 hover:text-fuchsia-300">
                       {b.name ?? b.id}
                     </Link>
                     <div className="flex items-center gap-2">
                       {b.status && <Badge>{b.status}</Badge>}
                       {b.risk_score != null && (
-                        <span className="text-xs tabular-nums text-rose-400">{pct(b.risk_score)}</span>
+                        <span className="text-xs tabular-nums text-fuchsia-400">{pct(b.risk_score)}</span>
                       )}
                     </div>
                   </li>
@@ -347,13 +347,13 @@ export default function RiskDashboardPage() {
         {/* Expiring licenses */}
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-200">Expiring / Expired Licenses</h2>
+            <h2 className="text-sm font-semibold text-slate-200">Expiring / Expired Licenses</h2>
           </CardHeader>
           <CardBody>
             {expiring.length === 0 ? (
-              <p className="text-sm text-zinc-500">No expiring licenses.</p>
+              <p className="text-sm text-slate-500">No expiring licenses.</p>
             ) : (
-              <ul className="divide-y divide-zinc-800">
+              <ul className="divide-y divide-slate-800">
                 {expiring.map((e) => {
                   const days =
                     e.expiry_date != null
@@ -362,9 +362,9 @@ export default function RiskDashboardPage() {
                   return (
                     <li key={e.id} className="flex items-center justify-between py-2">
                       <div className="min-w-0">
-                        <div className="truncate text-sm text-zinc-200">{e.license_name ?? e.id}</div>
+                        <div className="truncate text-sm text-slate-200">{e.license_name ?? e.id}</div>
                         {e.source_id && (
-                          <Link href={`/dashboard/sources/${e.source_id}`} className="text-xs text-rose-400 hover:underline">
+                          <Link href={`/dashboard/sources/${e.source_id}`} className="text-xs text-fuchsia-400 hover:underline">
                             view source
                           </Link>
                         )}
@@ -386,7 +386,7 @@ export default function RiskDashboardPage() {
       {topRisks.length > 0 && (
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-200">Top Risk Sources</h2>
+            <h2 className="text-sm font-semibold text-slate-200">Top Risk Sources</h2>
           </CardHeader>
           <CardBody>
             <div className="space-y-3">
@@ -394,7 +394,7 @@ export default function RiskDashboardPage() {
                 <div key={t.source_id} className="flex items-center gap-3">
                   <Link
                     href={`/dashboard/sources/${t.source_id}`}
-                    className="w-48 shrink-0 truncate text-sm text-zinc-200 hover:text-rose-300"
+                    className="w-48 shrink-0 truncate text-sm text-slate-200 hover:text-fuchsia-300"
                   >
                     {t.name ?? t.source_id}
                   </Link>
@@ -413,13 +413,13 @@ export default function RiskDashboardPage() {
       <Card>
         <CardHeader>
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="text-sm font-semibold text-zinc-200">Risk Score Register</h2>
+            <h2 className="text-sm font-semibold text-slate-200">Risk Score Register</h2>
             <div className="flex items-center gap-2">
-              <span className="text-xs text-zinc-500">Sort by</span>
+              <span className="text-xs text-slate-500">Sort by</span>
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value as typeof sort)}
-                className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+                className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
               >
                 <option value="composite">Composite</option>
                 <option value="license">License</option>
@@ -456,7 +456,7 @@ export default function RiskDashboardPage() {
                     <Td>
                       <Link
                         href={`/dashboard/sources/${s.source_id}`}
-                        className="font-mono text-xs text-rose-400 hover:underline"
+                        className="font-mono text-xs text-fuchsia-400 hover:underline"
                       >
                         {s.source_id.slice(0, 8)}
                       </Link>
@@ -468,7 +468,7 @@ export default function RiskDashboardPage() {
                     <Td>
                       <Badge tone={riskTone(pct(s.composite_risk))}>{pct(s.composite_risk)}</Badge>
                     </Td>
-                    <Td className="text-xs text-zinc-500">
+                    <Td className="text-xs text-slate-500">
                       {s.computed_at ? s.computed_at.slice(0, 10) : '—'}
                     </Td>
                     <Td className="text-right">

@@ -103,8 +103,8 @@ export default function SourcesPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-xl font-semibold text-zinc-100">Source register</h1>
-          <p className="mt-1 text-sm text-zinc-500">Every data source and its clearance posture.</p>
+          <h1 className="text-xl font-semibold text-slate-100">Source register</h1>
+          <p className="mt-1 text-sm text-slate-500">Every data source and its clearance posture.</p>
         </div>
         <Link href="/dashboard/sources/new">
           <Button>Register source</Button>
@@ -119,7 +119,7 @@ export default function SourcesPage() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search name, vendor, description..."
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
             <Button type="submit" variant="secondary">
               Search
@@ -130,7 +130,7 @@ export default function SourcesPage() {
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
             >
               <option value="">All statuses</option>
               {STATUSES.map((s) => (
@@ -143,7 +143,7 @@ export default function SourcesPage() {
             <select
               value={sourceType}
               onChange={(e) => setSourceType(e.target.value)}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
             >
               <option value="">All types</option>
               {typeOptions.map((t) => (
@@ -156,7 +156,7 @@ export default function SourcesPage() {
             <select
               value={collection}
               onChange={(e) => setCollection(e.target.value)}
-              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
             >
               <option value="">All collections</option>
               {collectionOptions.map((c) => (
@@ -211,7 +211,7 @@ export default function SourcesPage() {
         />
       ) : (
         <div className="space-y-2">
-          <p className="text-xs text-zinc-500">
+          <p className="text-xs text-slate-500">
             {sources.length} source{sources.length === 1 ? '' : 's'}
           </p>
           <Table>
@@ -233,8 +233,8 @@ export default function SourcesPage() {
                   <Tr key={s.id} className="cursor-pointer">
                     <Td>
                       <Link href={`/dashboard/sources/${s.id}`} className="block">
-                        <div className="font-medium text-zinc-100 hover:text-rose-400">{s.name}</div>
-                        {s.collection && <div className="text-xs text-zinc-600">{s.collection}</div>}
+                        <div className="font-medium text-slate-100 hover:text-fuchsia-400">{s.name}</div>
+                        {s.collection && <div className="text-xs text-slate-600">{s.collection}</div>}
                       </Link>
                     </Td>
                     <Td>{s.source_type || '—'}</Td>

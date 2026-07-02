@@ -200,8 +200,8 @@ export default function LicensesPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">License Tracker</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">License Tracker</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Track licensing terms, conflicts, and expiries across every training data source.
           </p>
         </div>
@@ -215,7 +215,7 @@ export default function LicensesPage() {
         <Stat label="Expiring / Expired" value={expiring.length} tone={expiring.length ? 'amber' : 'default'} />
       </div>
 
-      <div className="flex flex-wrap items-center gap-2 border-b border-zinc-800">
+      <div className="flex flex-wrap items-center gap-2 border-b border-slate-800">
         {([
           ['all', `All (${licenses.length})`],
           ['conflicts', `Conflicts (${conflicts.length})`],
@@ -226,8 +226,8 @@ export default function LicensesPage() {
             onClick={() => setTab(key)}
             className={`-mb-px border-b-2 px-3 py-2 text-sm font-medium transition-colors ${
               tab === key
-                ? 'border-rose-500 text-rose-300'
-                : 'border-transparent text-zinc-500 hover:text-zinc-300'
+                ? 'border-fuchsia-500 text-fuchsia-300'
+                : 'border-transparent text-slate-500 hover:text-slate-300'
             }`}
           >
             {label}
@@ -240,12 +240,12 @@ export default function LicensesPage() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search name, type, notes..."
-          className="w-64 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+          className="w-64 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
         />
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+          className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
         >
           <option value="">All statuses</option>
           {statuses.map((s) => (
@@ -254,12 +254,12 @@ export default function LicensesPage() {
             </option>
           ))}
         </select>
-        <label className="flex items-center gap-2 text-sm text-zinc-400">
+        <label className="flex items-center gap-2 text-sm text-slate-400">
           <input
             type="checkbox"
             checked={trainingOnly}
             onChange={(e) => setTrainingOnly(e.target.checked)}
-            className="h-4 w-4 accent-rose-600"
+            className="h-4 w-4 accent-fuchsia-600"
           />
           AI training permitted only
         </label>
@@ -309,11 +309,11 @@ export default function LicensesPage() {
               return (
                 <Tr key={l.id}>
                   <Td>
-                    <div className="font-medium text-zinc-100">{l.license_name}</div>
+                    <div className="font-medium text-slate-100">{l.license_name}</div>
                     {l.source_id && (
                       <Link
                         href={`/dashboard/sources/${l.source_id}`}
-                        className="text-xs text-rose-400 hover:underline"
+                        className="text-xs text-fuchsia-400 hover:underline"
                       >
                         view source
                       </Link>
@@ -340,7 +340,7 @@ export default function LicensesPage() {
                         {d !== null && (
                           <span
                             className={`ml-1 text-xs ${
-                              d < 0 ? 'text-red-400' : d < 30 ? 'text-amber-400' : 'text-zinc-500'
+                              d < 0 ? 'text-red-400' : d < 30 ? 'text-amber-400' : 'text-slate-500'
                             }`}
                           >
                             ({d < 0 ? `${-d}d ago` : `${d}d`})
@@ -423,7 +423,7 @@ export default function LicensesPage() {
               placeholder="Link to a data source"
             />
           </Field>
-          <div className="grid grid-cols-2 gap-2 rounded-lg border border-zinc-800 bg-zinc-900/40 p-3">
+          <div className="grid grid-cols-2 gap-2 rounded-lg border border-slate-800 bg-slate-900/40 p-3">
             {([
               ['permits_ai_training', 'Permits AI training'],
               ['permits_commercial', 'Permits commercial'],
@@ -431,12 +431,12 @@ export default function LicensesPage() {
               ['requires_attribution', 'Requires attribution'],
               ['share_alike', 'Share-alike'],
             ] as [keyof FormState, string][]).map(([key, label]) => (
-              <label key={key} className="flex items-center gap-2 text-sm text-zinc-300">
+              <label key={key} className="flex items-center gap-2 text-sm text-slate-300">
                 <input
                   type="checkbox"
                   checked={form[key] as boolean}
                   onChange={(e) => setForm({ ...form, [key]: e.target.checked })}
-                  className="h-4 w-4 accent-rose-600"
+                  className="h-4 w-4 accent-fuchsia-600"
                 />
                 {label}
               </label>
@@ -505,7 +505,7 @@ export default function LicensesPage() {
 }
 
 const inputCls =
-  'w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none'
+  'w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none'
 
 function Field({
   label,
@@ -518,9 +518,9 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-zinc-400">
+      <span className="mb-1 block text-xs font-medium text-slate-400">
         {label}
-        {required && <span className="text-rose-500"> *</span>}
+        {required && <span className="text-fuchsia-500"> *</span>}
       </span>
       {children}
     </label>

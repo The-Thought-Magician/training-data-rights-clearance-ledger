@@ -258,7 +258,7 @@ export default function ClaimDetailPage() {
   if (error && !detail) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/claims" className="text-sm text-rose-400 hover:underline">
+        <Link href="/dashboard/claims" className="text-sm text-fuchsia-400 hover:underline">
           ← Back to claims
         </Link>
         <div className="rounded-lg border border-red-800 bg-red-950/40 px-4 py-3 text-sm text-red-300">
@@ -271,7 +271,7 @@ export default function ClaimDetailPage() {
   if (!detail) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/claims" className="text-sm text-rose-400 hover:underline">
+        <Link href="/dashboard/claims" className="text-sm text-fuchsia-400 hover:underline">
           ← Back to claims
         </Link>
         <EmptyState title="Claim not found" />
@@ -286,7 +286,7 @@ export default function ClaimDetailPage() {
       <div>
         <button
           onClick={() => router.push('/dashboard/claims')}
-          className="text-sm text-rose-400 hover:underline"
+          className="text-sm text-fuchsia-400 hover:underline"
         >
           ← Back to claims
         </button>
@@ -295,13 +295,13 @@ export default function ClaimDetailPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-2xl font-semibold text-zinc-100">{claim.claimant}</h1>
+            <h1 className="text-2xl font-semibold text-slate-100">{claim.claimant}</h1>
             <Badge tone={severityTone[claim.severity] ?? 'zinc'}>{claim.severity}</Badge>
             <Badge>{claim.claim_type}</Badge>
             <Badge>{claim.status}</Badge>
             {claim.legal_hold && <Badge tone="rose">legal hold</Badge>}
           </div>
-          <p className="mt-1 text-sm text-zinc-500">
+          <p className="mt-1 text-sm text-slate-500">
             Filed {fmtDate(claim.created_at)}
             {claim.response_deadline && <> · deadline {fmtDate(claim.response_deadline)}</>}
           </p>
@@ -336,23 +336,23 @@ export default function ClaimDetailPage() {
         <div className="space-y-6 lg:col-span-1">
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-zinc-200">Claim details</h2>
+              <h2 className="text-sm font-semibold text-slate-200">Claim details</h2>
             </CardHeader>
             <CardBody className="space-y-3 text-sm">
               <div>
-                <div className="text-xs uppercase tracking-wide text-zinc-500">Description</div>
-                <div className="mt-0.5 whitespace-pre-wrap text-zinc-300">
+                <div className="text-xs uppercase tracking-wide text-slate-500">Description</div>
+                <div className="mt-0.5 whitespace-pre-wrap text-slate-300">
                   {claim.description || '—'}
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <div className="text-xs uppercase tracking-wide text-zinc-500">Source</div>
-                  <div className="text-zinc-300">
+                  <div className="text-xs uppercase tracking-wide text-slate-500">Source</div>
+                  <div className="text-slate-300">
                     {claim.source_id ? (
                       <Link
                         href={`/dashboard/sources/${claim.source_id}`}
-                        className="text-rose-400 hover:underline"
+                        className="text-fuchsia-400 hover:underline"
                       >
                         view source
                       </Link>
@@ -362,8 +362,8 @@ export default function ClaimDetailPage() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-wide text-zinc-500">Resolved at</div>
-                  <div className="text-zinc-300">{fmtDate(claim.resolved_at)}</div>
+                  <div className="text-xs uppercase tracking-wide text-slate-500">Resolved at</div>
+                  <div className="text-slate-300">{fmtDate(claim.resolved_at)}</div>
                 </div>
               </div>
             </CardBody>
@@ -371,17 +371,17 @@ export default function ClaimDetailPage() {
 
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-zinc-200">Triage</h2>
+              <h2 className="text-sm font-semibold text-slate-200">Triage</h2>
             </CardHeader>
             <CardBody className="space-y-4">
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
                   Status
                 </label>
                 <select
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
-                  className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+                  className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
                 >
                   {STATUSES.map((s) => (
                     <option key={s} value={s}>
@@ -391,13 +391,13 @@ export default function ClaimDetailPage() {
                 </select>
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
                   Severity
                 </label>
                 <select
                   value={severity}
                   onChange={(e) => setSeverity(e.target.value)}
-                  className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+                  className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
                 >
                   {SEVERITIES.map((s) => (
                     <option key={s} value={s}>
@@ -406,17 +406,17 @@ export default function ClaimDetailPage() {
                   ))}
                 </select>
               </div>
-              <label className="flex cursor-pointer items-center gap-2 text-sm text-zinc-300">
+              <label className="flex cursor-pointer items-center gap-2 text-sm text-slate-300">
                 <input
                   type="checkbox"
                   checked={legalHold}
                   onChange={(e) => setLegalHold(e.target.checked)}
-                  className="h-4 w-4 accent-rose-600"
+                  className="h-4 w-4 accent-fuchsia-600"
                 />
                 Legal hold
               </label>
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
                   Resolution
                 </label>
                 <textarea
@@ -424,7 +424,7 @@ export default function ClaimDetailPage() {
                   onChange={(e) => setResolution(e.target.value)}
                   rows={3}
                   placeholder="How this claim was resolved…"
-                  className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+                  className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
                 />
               </div>
               <Button onClick={saveMeta} disabled={savingMeta} className="w-full">
@@ -439,8 +439,8 @@ export default function ClaimDetailPage() {
           <Card>
             <CardHeader className="flex items-center justify-between">
               <div>
-                <h2 className="text-sm font-semibold text-zinc-200">Impact assessment</h2>
-                <p className="mt-0.5 text-xs text-zinc-500">
+                <h2 className="text-sm font-semibold text-slate-200">Impact assessment</h2>
+                <p className="mt-0.5 text-xs text-slate-500">
                   Remediation action per affected model version.
                 </p>
               </div>
@@ -466,9 +466,9 @@ export default function ClaimDetailPage() {
                   description="Add an impact to assess how this claim affects a model version, or add one for an unassessed version below."
                 />
               ) : (
-                <div className="w-full overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="w-full overflow-x-auto rounded-xl border border-slate-800">
                   <table className="w-full text-left text-sm">
-                    <thead className="bg-zinc-900/80 text-xs uppercase tracking-wide text-zinc-500">
+                    <thead className="bg-slate-900/80 text-xs uppercase tracking-wide text-slate-500">
                       <tr>
                         <th className="px-4 py-3 font-medium">Model version</th>
                         <th className="px-4 py-3 font-medium">Impact</th>
@@ -477,18 +477,18 @@ export default function ClaimDetailPage() {
                         <th className="px-4 py-3 text-right font-medium">Actions</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800">
+                    <tbody className="divide-y divide-slate-800">
                       {impacts.map((i) => (
-                        <tr key={i.id} className="hover:bg-zinc-900/40">
+                        <tr key={i.id} className="hover:bg-slate-900/40">
                           <td className="px-4 py-3">
-                            <span className="font-medium text-zinc-100">
+                            <span className="font-medium text-slate-100">
                               {versionLabel.get(i.model_version_id) ?? i.model_version_id}
                             </span>
                           </td>
                           <td className="px-4 py-3">
                             <Badge tone={impactTone[i.impact] ?? 'zinc'}>{i.impact}</Badge>
                           </td>
-                          <td className="px-4 py-3 text-zinc-400">
+                          <td className="px-4 py-3 text-slate-400">
                             <span className="block max-w-xs truncate" title={i.notes ?? ''}>
                               {i.notes || '—'}
                             </span>
@@ -535,14 +535,14 @@ export default function ClaimDetailPage() {
           {/* Affected model versions via lineage */}
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-zinc-200">Affected model versions</h2>
-              <p className="mt-0.5 text-xs text-zinc-500">
+              <h2 className="text-sm font-semibold text-slate-200">Affected model versions</h2>
+              <p className="mt-0.5 text-xs text-slate-500">
                 Versions trained on the claimed source (via lineage).
               </p>
             </CardHeader>
             <CardBody>
               {versions.length === 0 ? (
-                <p className="text-sm text-zinc-500">
+                <p className="text-sm text-slate-500">
                   No model versions are linked to this claim&apos;s source.
                 </p>
               ) : (
@@ -552,16 +552,16 @@ export default function ClaimDetailPage() {
                     return (
                       <div
                         key={v.id}
-                        className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900/40 p-3"
+                        className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/40 p-3"
                       >
                         <div>
                           <Link
                             href={`/dashboard/models/${v.id}`}
-                            className="text-sm font-medium text-rose-400 hover:underline"
+                            className="text-sm font-medium text-fuchsia-400 hover:underline"
                           >
                             {v.version ? `v${v.version}` : v.id}
                           </Link>
-                          <div className="mt-0.5 flex flex-wrap items-center gap-1 text-xs text-zinc-500">
+                          <div className="mt-0.5 flex flex-wrap items-center gap-1 text-xs text-slate-500">
                             {v.release_status && <Badge>{v.release_status}</Badge>}
                             {typeof v.proportion === 'number' && (
                               <span>{(v.proportion * 100).toFixed(0)}% of mix</span>
@@ -610,13 +610,13 @@ export default function ClaimDetailPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
-              Model version <span className="text-rose-400">*</span>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              Model version <span className="text-fuchsia-400">*</span>
             </label>
             <select
               value={addForm.model_version_id}
               onChange={(e) => setAddForm((f) => ({ ...f, model_version_id: e.target.value }))}
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
             >
               <option value="">Select a version…</option>
               {versions.map((v) => (
@@ -633,13 +633,13 @@ export default function ClaimDetailPage() {
             )}
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Remediation impact
             </label>
             <select
               value={addForm.impact}
               onChange={(e) => setAddForm((f) => ({ ...f, impact: e.target.value }))}
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
             >
               {IMPACTS.map((i) => (
                 <option key={i} value={i}>
@@ -649,7 +649,7 @@ export default function ClaimDetailPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Notes
             </label>
             <textarea
@@ -657,7 +657,7 @@ export default function ClaimDetailPage() {
               onChange={(e) => setAddForm((f) => ({ ...f, notes: e.target.value }))}
               rows={3}
               placeholder="Remediation plan / rationale…"
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
         </div>
@@ -685,13 +685,13 @@ export default function ClaimDetailPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Remediation impact
             </label>
             <select
               value={editForm.impact}
               onChange={(e) => setEditForm((f) => ({ ...f, impact: e.target.value }))}
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
             >
               {IMPACTS.map((i) => (
                 <option key={i} value={i}>
@@ -700,24 +700,24 @@ export default function ClaimDetailPage() {
               ))}
             </select>
           </div>
-          <label className="flex cursor-pointer items-center gap-2 text-sm text-zinc-300">
+          <label className="flex cursor-pointer items-center gap-2 text-sm text-slate-300">
             <input
               type="checkbox"
               checked={editForm.resolved}
               onChange={(e) => setEditForm((f) => ({ ...f, resolved: e.target.checked }))}
-              className="h-4 w-4 accent-rose-600"
+              className="h-4 w-4 accent-fuchsia-600"
             />
             Mark this impact resolved
           </label>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Notes
             </label>
             <textarea
               value={editForm.notes}
               onChange={(e) => setEditForm((f) => ({ ...f, notes: e.target.value }))}
               rows={3}
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
         </div>

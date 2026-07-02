@@ -27,8 +27,8 @@ const ACQUISITION_METHODS = ['purchase', 'license', 'scrape', 'partnership', 'do
 const FORMATS = ['jsonl', 'parquet', 'csv', 'images', 'audio', 'video', 'text', 'mixed']
 
 const inputCls =
-  'w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none'
-const labelCls = 'mb-1.5 block text-xs font-medium uppercase tracking-wide text-zinc-500'
+  'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none'
+const labelCls = 'mb-1.5 block text-xs font-medium uppercase tracking-wide text-slate-500'
 
 export default function NewSourcePage() {
   const router = useRouter()
@@ -117,11 +117,11 @@ export default function NewSourcePage() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
-        <Link href="/dashboard/sources" className="text-xs text-rose-400 hover:text-rose-300">
+        <Link href="/dashboard/sources" className="text-xs text-fuchsia-400 hover:text-fuchsia-300">
           ← Back to register
         </Link>
-        <h1 className="mt-2 text-xl font-semibold text-zinc-100">Register data source</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <h1 className="mt-2 text-xl font-semibold text-slate-100">Register data source</h1>
+        <p className="mt-1 text-sm text-slate-500">
           Capture provenance and acquisition facts so the source can move through clearance.
         </p>
       </div>
@@ -134,12 +134,12 @@ export default function NewSourcePage() {
         {/* Identity */}
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-200">Identity</h2>
+            <h2 className="text-sm font-semibold text-slate-200">Identity</h2>
           </CardHeader>
           <CardBody className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="sm:col-span-2">
               <label className={labelCls}>
-                Name <span className="text-rose-500">*</span>
+                Name <span className="text-fuchsia-500">*</span>
               </label>
               <input
                 value={name}
@@ -203,7 +203,7 @@ export default function NewSourcePage() {
         {/* Provenance / acquisition */}
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-200">Acquisition & provenance</h2>
+            <h2 className="text-sm font-semibold text-slate-200">Acquisition & provenance</h2>
           </CardHeader>
           <CardBody className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
@@ -272,7 +272,7 @@ export default function NewSourcePage() {
         {/* Composition */}
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-200">Composition</h2>
+            <h2 className="text-sm font-semibold text-slate-200">Composition</h2>
           </CardHeader>
           <CardBody className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div>
@@ -313,15 +313,15 @@ export default function NewSourcePage() {
         {/* License template */}
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-200">Starting license template</h2>
+            <h2 className="text-sm font-semibold text-slate-200">Starting license template</h2>
           </CardHeader>
           <CardBody className="space-y-4">
             {tplLoading ? (
               <Spinner label="Loading templates..." />
             ) : templates.length === 0 ? (
-              <p className="text-sm text-zinc-500">
+              <p className="text-sm text-slate-500">
                 No license templates yet. You can add one later from{' '}
-                <Link href="/dashboard/license-templates" className="text-rose-400 hover:text-rose-300">
+                <Link href="/dashboard/license-templates" className="text-fuchsia-400 hover:text-fuchsia-300">
                   License Templates
                 </Link>
                 .
@@ -341,9 +341,9 @@ export default function NewSourcePage() {
                   </select>
                 </div>
                 {selectedTemplate && (
-                  <div className="rounded-lg border border-zinc-800 bg-zinc-950/60 p-4">
+                  <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-4">
                     {selectedTemplate.description && (
-                      <p className="mb-3 text-sm text-zinc-400">{selectedTemplate.description}</p>
+                      <p className="mb-3 text-sm text-slate-400">{selectedTemplate.description}</p>
                     )}
                     <div className="flex flex-wrap gap-2">
                       <Badge tone={selectedTemplate.permits_ai_training ? 'green' : 'red'}>

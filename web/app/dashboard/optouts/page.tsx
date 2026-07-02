@@ -200,8 +200,8 @@ export default function OptoutsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Opt-Outs &amp; Preference Signals</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">Opt-Outs &amp; Preference Signals</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Honor opt-out requests and machine-readable training preferences (robots.txt, ai.txt, TDM reservations).
           </p>
         </div>
@@ -228,7 +228,7 @@ export default function OptoutsPage() {
         <Stat label="Recheck Due" value={signalCounts.recheckDue} tone="amber" />
       </div>
 
-      <div className="flex items-center gap-2 border-b border-zinc-800">
+      <div className="flex items-center gap-2 border-b border-slate-800">
         <TabButton active={tab === 'optouts'} onClick={() => { setTab('optouts'); setStatusFilter('all') }}>
           Opt-Out Register ({counts.total})
         </TabButton>
@@ -256,7 +256,7 @@ export default function OptoutsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={tab === 'optouts' ? 'Search subject, source, scope...' : 'Search signal type, URL, source...'}
-              className="w-64 max-w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-64 max-w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
         </CardBody>
@@ -295,21 +295,21 @@ export default function OptoutsPage() {
             <Tbody>
               {filteredOptouts.map((o) => (
                 <Tr key={o.id}>
-                  <Td className="font-medium text-zinc-100">
+                  <Td className="font-medium text-slate-100">
                     {o.subject_identity || '—'}
                     {o.rejection_reason && o.honor_status === 'rejected' && (
                       <div className="mt-0.5 text-xs text-red-400/80">Reason: {o.rejection_reason}</div>
                     )}
                   </Td>
                   <Td><Badge tone={o.optout_type === 'rights-holder' ? 'purple' : 'blue'}>{o.optout_type}</Badge></Td>
-                  <Td className="text-zinc-400">{sourceName(o.source_id)}</Td>
-                  <Td className="text-zinc-400">{o.scope || '—'}</Td>
-                  <Td className="text-zinc-400">{o.channel || '—'}</Td>
+                  <Td className="text-slate-400">{sourceName(o.source_id)}</Td>
+                  <Td className="text-slate-400">{o.scope || '—'}</Td>
+                  <Td className="text-slate-400">{o.channel || '—'}</Td>
                   <Td>
                     <Badge>{o.honor_status}</Badge>
-                    {o.applied_at && <div className="mt-0.5 text-xs text-zinc-600">{fmtDate(o.applied_at)}</div>}
+                    {o.applied_at && <div className="mt-0.5 text-xs text-slate-600">{fmtDate(o.applied_at)}</div>}
                   </Td>
-                  <Td className="text-zinc-400">{fmtDate(o.received_at)}</Td>
+                  <Td className="text-slate-400">{fmtDate(o.received_at)}</Td>
                   <Td className="text-right">
                     {o.honor_status === 'pending' ? (
                       <div className="flex items-center justify-end gap-2">
@@ -330,7 +330,7 @@ export default function OptoutsPage() {
                         </Button>
                       </div>
                     ) : (
-                      <span className="text-xs text-zinc-600">{o.honor_status === 'applied' ? 'Honored' : 'Closed'}</span>
+                      <span className="text-xs text-slate-600">{o.honor_status === 'applied' ? 'Honored' : 'Closed'}</span>
                     )}
                   </Td>
                 </Tr>
@@ -370,21 +370,21 @@ export default function OptoutsPage() {
           <Tbody>
             {filteredSignals.map((s) => (
               <Tr key={s.id}>
-                <Td className="font-medium text-zinc-100">{s.signal_type}</Td>
+                <Td className="font-medium text-slate-100">{s.signal_type}</Td>
                 <Td><Badge tone={s.directive === 'disallow' ? 'rose' : 'green'}>{s.directive}</Badge></Td>
-                <Td className="text-zinc-400">{sourceName(s.source_id)}</Td>
-                <Td className="max-w-[16rem] truncate text-zinc-400">
+                <Td className="text-slate-400">{sourceName(s.source_id)}</Td>
+                <Td className="max-w-[16rem] truncate text-slate-400">
                   {s.captured_url ? (
-                    <a href={s.captured_url} target="_blank" rel="noreferrer" className="text-rose-400 hover:underline">
+                    <a href={s.captured_url} target="_blank" rel="noreferrer" className="text-fuchsia-400 hover:underline">
                       {s.captured_url}
                     </a>
                   ) : '—'}
                 </Td>
-                <Td className="font-mono text-xs text-zinc-500">
+                <Td className="font-mono text-xs text-slate-500">
                   {s.snapshot_sha256 ? s.snapshot_sha256.slice(0, 12) + '…' : '—'}
                 </Td>
-                <Td className="text-zinc-400">{fmtDate(s.captured_at)}</Td>
-                <Td className={isPast(s.recheck_due) ? 'text-amber-400' : 'text-zinc-400'}>
+                <Td className="text-slate-400">{fmtDate(s.captured_at)}</Td>
+                <Td className={isPast(s.recheck_due) ? 'text-amber-400' : 'text-slate-400'}>
                   {fmtDate(s.recheck_due)}
                 </Td>
                 <Td className="text-right">
@@ -465,8 +465,8 @@ export default function OptoutsPage() {
             {formError && (
               <div className="rounded-lg border border-red-800 bg-red-950/40 px-3 py-2 text-sm text-red-300">{formError}</div>
             )}
-            <p className="text-sm text-zinc-400">
-              Rejecting <span className="text-zinc-200">{rejecting.subject_identity || 'this opt-out'}</span> requires a documented reason for the audit trail.
+            <p className="text-sm text-slate-400">
+              Rejecting <span className="text-slate-200">{rejecting.subject_identity || 'this opt-out'}</span> requires a documented reason for the audit trail.
             </p>
             <Field label="Rejection Reason" required>
               <textarea value={rejectReason} onChange={(e) => setRejectReason(e.target.value)} rows={3} className={inputCls} placeholder="Why is this opt-out being rejected?" />
@@ -483,7 +483,7 @@ function TabButton({ active, onClick, children }: { active: boolean; onClick: ()
     <button
       onClick={onClick}
       className={`-mb-px border-b-2 px-4 py-2 text-sm font-medium transition-colors ${
-        active ? 'border-rose-500 text-rose-300' : 'border-transparent text-zinc-500 hover:text-zinc-300'
+        active ? 'border-fuchsia-500 text-fuchsia-300' : 'border-transparent text-slate-500 hover:text-slate-300'
       }`}
     >
       {children}
@@ -497,8 +497,8 @@ function FilterChip({ active, onClick, children }: { active: boolean; onClick: (
       onClick={onClick}
       className={`rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors ${
         active
-          ? 'border-rose-600 bg-rose-950/40 text-rose-300'
-          : 'border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200'
+          ? 'border-fuchsia-600 bg-fuchsia-950/40 text-fuchsia-300'
+          : 'border-slate-700 bg-slate-900 text-slate-400 hover:border-slate-600 hover:text-slate-200'
       }`}
     >
       {children}
@@ -688,14 +688,14 @@ function SignalForm({
 }
 
 const inputCls =
-  'w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-rose-600 focus:outline-none'
+  'w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-fuchsia-600 focus:outline-none'
 
 function Field({ label, hint, required, children }: { label: string; hint?: string; required?: boolean; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 flex items-center gap-1 text-xs font-medium text-zinc-400">
-        {label} {required && <span className="text-rose-500">*</span>}
-        {hint && <span className="font-normal text-zinc-600">— {hint}</span>}
+      <span className="mb-1 flex items-center gap-1 text-xs font-medium text-slate-400">
+        {label} {required && <span className="text-fuchsia-500">*</span>}
+        {hint && <span className="font-normal text-slate-600">— {hint}</span>}
       </span>
       {children}
     </label>

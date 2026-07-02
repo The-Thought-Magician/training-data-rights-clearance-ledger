@@ -165,7 +165,7 @@ type Tab =
 /* ---------------- helpers ---------------- */
 
 const inputCls =
-  'w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none'
+  'w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none'
 
 function fmtDate(s: string | null | undefined) {
   if (!s) return '—'
@@ -195,9 +195,9 @@ function riskTone(v: number | null | undefined): 'green' | 'amber' | 'red' | 'zi
 function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-zinc-400">
+      <span className="mb-1 block text-xs font-medium text-slate-400">
         {label}
-        {required && <span className="text-rose-500"> *</span>}
+        {required && <span className="text-fuchsia-500"> *</span>}
       </span>
       {children}
     </label>
@@ -212,10 +212,10 @@ function RiskBar({ label, value }: { label: string; value: number | null | undef
   return (
     <div>
       <div className="mb-1 flex items-center justify-between text-xs">
-        <span className="text-zinc-400">{label}</span>
-        <span className="tabular-nums text-zinc-300">{value == null ? '—' : pct}</span>
+        <span className="text-slate-400">{label}</span>
+        <span className="tabular-nums text-slate-300">{value == null ? '—' : pct}</span>
       </div>
-      <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
         <div className={`h-full ${color}`} style={{ width: `${pct}%` }} />
       </div>
     </div>
@@ -345,17 +345,17 @@ export default function SourceDetailPage() {
       {/* header */}
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <Link href="/dashboard/sources" className="text-xs text-rose-400 hover:underline">
+          <Link href="/dashboard/sources" className="text-xs text-fuchsia-400 hover:underline">
             ← Sources
           </Link>
           <div className="mt-1 flex flex-wrap items-center gap-3">
-            <h1 className="text-2xl font-semibold text-zinc-100">{s.name}</h1>
+            <h1 className="text-2xl font-semibold text-slate-100">{s.name}</h1>
             {s.status && <Badge>{s.status}</Badge>}
             {s.risk_score != null && (
               <Badge tone={riskTone(s.risk_score)}>risk {Math.round(s.risk_score * 100)}</Badge>
             )}
           </div>
-          {s.description && <p className="mt-1 max-w-2xl text-sm text-zinc-500">{s.description}</p>}
+          {s.description && <p className="mt-1 max-w-2xl text-sm text-slate-500">{s.description}</p>}
         </div>
         <div className="flex gap-2">
           <Button
@@ -374,21 +374,21 @@ export default function SourceDetailPage() {
       </div>
 
       {actionMsg && (
-        <div className="rounded-lg border border-zinc-700 bg-zinc-900/60 px-3 py-2 text-sm text-zinc-300">
+        <div className="rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2 text-sm text-slate-300">
           {actionMsg}
         </div>
       )}
 
       {/* tabs */}
-      <div className="flex flex-wrap gap-1 border-b border-zinc-800">
+      <div className="flex flex-wrap gap-1 border-b border-slate-800">
         {tabs.map(([key, label]) => (
           <button
             key={key}
             onClick={() => setTab(key)}
             className={`-mb-px border-b-2 px-3 py-2 text-sm font-medium transition-colors ${
               tab === key
-                ? 'border-rose-500 text-rose-300'
-                : 'border-transparent text-zinc-500 hover:text-zinc-300'
+                ? 'border-fuchsia-500 text-fuchsia-300'
+                : 'border-transparent text-slate-500 hover:text-slate-300'
             }`}
           >
             {label}
@@ -417,7 +417,7 @@ export default function SourceDetailPage() {
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <Card>
               <CardHeader>
-                <h3 className="text-sm font-semibold text-zinc-200">Source Details</h3>
+                <h3 className="text-sm font-semibold text-slate-200">Source Details</h3>
               </CardHeader>
               <CardBody>
                 <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
@@ -433,7 +433,7 @@ export default function SourceDetailPage() {
                     k="Origin"
                     v={
                       s.origin_url ? (
-                        <a href={s.origin_url} target="_blank" rel="noreferrer" className="text-rose-400 hover:underline">
+                        <a href={s.origin_url} target="_blank" rel="noreferrer" className="text-fuchsia-400 hover:underline">
                           link
                         </a>
                       ) : null
@@ -442,9 +442,9 @@ export default function SourceDetailPage() {
                   <KV k="Created" v={s.created_at ? s.created_at.slice(0, 10) : null} />
                 </dl>
                 {s.justification && (
-                  <div className="mt-4 border-t border-zinc-800 pt-3">
-                    <div className="text-xs font-medium uppercase text-zinc-500">Justification</div>
-                    <p className="mt-1 text-sm text-zinc-400">{s.justification}</p>
+                  <div className="mt-4 border-t border-slate-800 pt-3">
+                    <div className="text-xs font-medium uppercase text-slate-500">Justification</div>
+                    <p className="mt-1 text-sm text-slate-400">{s.justification}</p>
                   </div>
                 )}
                 {s.tags && s.tags.length > 0 && (
@@ -459,7 +459,7 @@ export default function SourceDetailPage() {
 
             <Card>
               <CardHeader>
-                <h3 className="text-sm font-semibold text-zinc-200">Risk Breakdown</h3>
+                <h3 className="text-sm font-semibold text-slate-200">Risk Breakdown</h3>
               </CardHeader>
               <CardBody className="space-y-4">
                 {data.risk ? (
@@ -468,10 +468,10 @@ export default function SourceDetailPage() {
                     <RiskBar label="Copyright risk" value={data.risk.copyright_risk} />
                     <RiskBar label="PII risk" value={data.risk.pii_risk} />
                     <RiskBar label="Opt-out risk" value={data.risk.optout_risk} />
-                    <div className="border-t border-zinc-800 pt-3">
+                    <div className="border-t border-slate-800 pt-3">
                       <RiskBar label="Composite" value={data.risk.composite_risk} />
                     </div>
-                    <p className="text-xs text-zinc-600">Computed {fmtDate(data.risk.computed_at)}</p>
+                    <p className="text-xs text-slate-600">Computed {fmtDate(data.risk.computed_at)}</p>
                   </>
                 ) : (
                   <EmptyState
@@ -511,7 +511,7 @@ export default function SourceDetailPage() {
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               <Card>
                 <CardHeader>
-                  <h3 className="text-sm font-semibold text-zinc-200">Provenance Events</h3>
+                  <h3 className="text-sm font-semibold text-slate-200">Provenance Events</h3>
                 </CardHeader>
                 <CardBody>
                   {provenance.length === 0 ? (
@@ -519,13 +519,13 @@ export default function SourceDetailPage() {
                   ) : (
                     <ol className="space-y-3">
                       {provenance.map((p) => (
-                        <li key={p.id} className="border-l-2 border-rose-800/60 pl-3">
+                        <li key={p.id} className="border-l-2 border-fuchsia-800/60 pl-3">
                           <div className="flex items-center gap-2">
                             <Badge tone="purple">{p.event_type}</Badge>
-                            <span className="text-xs text-zinc-500">{fmtDate(p.occurred_at ?? p.created_at)}</span>
+                            <span className="text-xs text-slate-500">{fmtDate(p.occurred_at ?? p.created_at)}</span>
                           </div>
-                          {p.description && <p className="mt-1 text-sm text-zinc-400">{p.description}</p>}
-                          {p.recorded_by && <p className="text-xs text-zinc-600">by {p.recorded_by}</p>}
+                          {p.description && <p className="mt-1 text-sm text-slate-400">{p.description}</p>}
+                          {p.recorded_by && <p className="text-xs text-slate-600">by {p.recorded_by}</p>}
                         </li>
                       ))}
                     </ol>
@@ -535,7 +535,7 @@ export default function SourceDetailPage() {
 
               <Card>
                 <CardHeader>
-                  <h3 className="text-sm font-semibold text-zinc-200">Custody Chain</h3>
+                  <h3 className="text-sm font-semibold text-slate-200">Custody Chain</h3>
                 </CardHeader>
                 <CardBody>
                   {custody.length === 0 ? (
@@ -543,12 +543,12 @@ export default function SourceDetailPage() {
                   ) : (
                     <ol className="space-y-3">
                       {custody.map((c) => (
-                        <li key={c.id} className="border-l-2 border-zinc-700 pl-3">
-                          <div className="text-sm text-zinc-200">
-                            {c.from_party ?? '—'} <span className="text-zinc-600">→</span> {c.to_party ?? '—'}
+                        <li key={c.id} className="border-l-2 border-slate-700 pl-3">
+                          <div className="text-sm text-slate-200">
+                            {c.from_party ?? '—'} <span className="text-slate-600">→</span> {c.to_party ?? '—'}
                           </div>
-                          {c.reason && <p className="text-sm text-zinc-500">{c.reason}</p>}
-                          <p className="text-xs text-zinc-600">{fmtDate(c.occurred_at ?? c.created_at)}</p>
+                          {c.reason && <p className="text-sm text-slate-500">{c.reason}</p>}
+                          <p className="text-xs text-slate-600">{fmtDate(c.occurred_at ?? c.created_at)}</p>
                         </li>
                       ))}
                     </ol>
@@ -566,7 +566,7 @@ export default function SourceDetailPage() {
           {data.license ? (
             <Card>
               <CardHeader className="flex items-center justify-between">
-                <h3 className="text-sm font-semibold text-zinc-200">{data.license.license_name}</h3>
+                <h3 className="text-sm font-semibold text-slate-200">{data.license.license_name}</h3>
                 {data.license.status && <Badge>{data.license.status}</Badge>}
               </CardHeader>
               <CardBody className="space-y-4">
@@ -599,7 +599,7 @@ export default function SourceDetailPage() {
                     </div>
                   </div>
                 )}
-                <Link href="/dashboard/licenses" className="text-sm text-rose-400 hover:underline">
+                <Link href="/dashboard/licenses" className="text-sm text-fuchsia-400 hover:underline">
                   Manage in License Tracker →
                 </Link>
               </CardBody>
@@ -619,7 +619,7 @@ export default function SourceDetailPage() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <Card>
             <CardHeader className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-zinc-200">Copyright Screening</h3>
+              <h3 className="text-sm font-semibold text-slate-200">Copyright Screening</h3>
               <Button variant="ghost" className="px-2 py-1" onClick={() => setModal('copyright')}>
                 + New
               </Button>
@@ -633,8 +633,8 @@ export default function SourceDetailPage() {
                   <KV k="Screened" v={data.copyright.screened_at ? data.copyright.screened_at.slice(0, 10) : null} />
                   {data.copyright.notes && (
                     <div className="col-span-2">
-                      <div className="text-xs uppercase text-zinc-500">Notes</div>
-                      <p className="mt-1 text-zinc-400">{data.copyright.notes}</p>
+                      <div className="text-xs uppercase text-slate-500">Notes</div>
+                      <p className="mt-1 text-slate-400">{data.copyright.notes}</p>
                     </div>
                   )}
                 </dl>
@@ -646,7 +646,7 @@ export default function SourceDetailPage() {
 
           <Card>
             <CardHeader className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-zinc-200">PII Screening</h3>
+              <h3 className="text-sm font-semibold text-slate-200">PII Screening</h3>
               <Button variant="ghost" className="px-2 py-1" onClick={() => setModal('pii')}>
                 + New
               </Button>
@@ -660,8 +660,8 @@ export default function SourceDetailPage() {
                   <KV k="Screened" v={data.pii.screened_at ? data.pii.screened_at.slice(0, 10) : null} />
                   {data.pii.notes && (
                     <div className="col-span-2">
-                      <div className="text-xs uppercase text-zinc-500">Notes</div>
-                      <p className="mt-1 text-zinc-400">{data.pii.notes}</p>
+                      <div className="text-xs uppercase text-slate-500">Notes</div>
+                      <p className="mt-1 text-slate-400">{data.pii.notes}</p>
                     </div>
                   )}
                 </dl>
@@ -678,7 +678,7 @@ export default function SourceDetailPage() {
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <h3 className="text-sm font-semibold text-zinc-200">Opt-Outs</h3>
+              <h3 className="text-sm font-semibold text-slate-200">Opt-Outs</h3>
             </CardHeader>
             <CardBody>
               {data.optouts.length === 0 ? (
@@ -712,7 +712,7 @@ export default function SourceDetailPage() {
 
           <Card>
             <CardHeader className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-zinc-200">Preference Signals</h3>
+              <h3 className="text-sm font-semibold text-slate-200">Preference Signals</h3>
               <Button variant="ghost" className="px-2 py-1" onClick={() => setModal('signal')}>
                 + Capture Signal
               </Button>
@@ -747,7 +747,7 @@ export default function SourceDetailPage() {
                         </Td>
                         <Td className="max-w-xs truncate">
                           {sig.captured_url ? (
-                            <a href={sig.captured_url} target="_blank" rel="noreferrer" className="text-rose-400 hover:underline">
+                            <a href={sig.captured_url} target="_blank" rel="noreferrer" className="text-fuchsia-400 hover:underline">
                               {sig.captured_url}
                             </a>
                           ) : (
@@ -770,7 +770,7 @@ export default function SourceDetailPage() {
       {tab === 'lineage' && (
         <Card>
           <CardHeader>
-            <h3 className="text-sm font-semibold text-zinc-200">Model Lineage</h3>
+            <h3 className="text-sm font-semibold text-slate-200">Model Lineage</h3>
           </CardHeader>
           <CardBody>
             {data.lineage.length === 0 ? (
@@ -791,7 +791,7 @@ export default function SourceDetailPage() {
                   {data.lineage.map((l) => (
                     <Tr key={l.id}>
                       <Td>
-                        <Link href={`/dashboard/models/${l.model_version_id}`} className="text-rose-400 hover:underline">
+                        <Link href={`/dashboard/models/${l.model_version_id}`} className="text-fuchsia-400 hover:underline">
                           {l.model_name ? `${l.model_name} ` : ''}
                           {l.version ?? l.model_version_id}
                         </Link>
@@ -812,7 +812,7 @@ export default function SourceDetailPage() {
         <div className="space-y-4">
           <Card>
             <CardHeader className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-zinc-200">Clearance Gate</h3>
+              <h3 className="text-sm font-semibold text-slate-200">Clearance Gate</h3>
               <Button
                 onClick={() => void runAction('evaluate', async () => {
                   await api.evaluateClearance(id)
@@ -828,7 +828,7 @@ export default function SourceDetailPage() {
               {data.clearance ? (
                 <>
                   <div className="flex items-center gap-3">
-                    <span className="text-sm text-zinc-400">Status</span>
+                    <span className="text-sm text-slate-400">Status</span>
                     <Badge
                       tone={
                         data.clearance.status === 'cleared'
@@ -858,12 +858,12 @@ export default function SourceDetailPage() {
                     )
                   )}
                   {data.clearance.decision_rationale && (
-                    <p className="text-sm text-zinc-400">{data.clearance.decision_rationale}</p>
+                    <p className="text-sm text-slate-400">{data.clearance.decision_rationale}</p>
                   )}
                   {data.clearance.decided_at && (
-                    <p className="text-xs text-zinc-600">Decided {fmtDate(data.clearance.decided_at)}</p>
+                    <p className="text-xs text-slate-600">Decided {fmtDate(data.clearance.decided_at)}</p>
                   )}
-                  <Link href="/dashboard/clearance" className="block text-sm text-rose-400 hover:underline">
+                  <Link href="/dashboard/clearance" className="block text-sm text-fuchsia-400 hover:underline">
                     Open Clearance Console →
                   </Link>
                 </>
@@ -882,7 +882,7 @@ export default function SourceDetailPage() {
       {tab === 'ledger' && (
         <Card>
           <CardHeader>
-            <h3 className="text-sm font-semibold text-zinc-200">Immutable Ledger</h3>
+            <h3 className="text-sm font-semibold text-slate-200">Immutable Ledger</h3>
           </CardHeader>
           <CardBody>
             {subLoading ? (
@@ -908,7 +908,7 @@ export default function SourceDetailPage() {
                         <Badge tone="purple">{e.action}</Badge>
                       </Td>
                       <Td>{e.actor_id ?? '—'}</Td>
-                      <Td className="font-mono text-xs text-zinc-500">{e.entry_hash?.slice(0, 12)}…</Td>
+                      <Td className="font-mono text-xs text-slate-500">{e.entry_hash?.slice(0, 12)}…</Td>
                       <Td>{fmtDate(e.created_at)}</Td>
                     </Tr>
                   ))}
@@ -959,8 +959,8 @@ export default function SourceDetailPage() {
 function KV({ k, v }: { k: string; v: React.ReactNode }) {
   return (
     <div>
-      <dt className="text-xs uppercase text-zinc-500">{k}</dt>
-      <dd className="mt-0.5 text-zinc-300">{v == null || v === '' ? '—' : v}</dd>
+      <dt className="text-xs uppercase text-slate-500">{k}</dt>
+      <dd className="mt-0.5 text-slate-300">{v == null || v === '' ? '—' : v}</dd>
     </div>
   )
 }
@@ -1330,7 +1330,7 @@ function LicenseModal({
             </select>
           </Field>
         </div>
-        <div className="grid grid-cols-2 gap-2 rounded-lg border border-zinc-800 bg-zinc-900/40 p-3">
+        <div className="grid grid-cols-2 gap-2 rounded-lg border border-slate-800 bg-slate-900/40 p-3">
           {([
             ['permits_ai_training', 'AI training'],
             ['permits_commercial', 'Commercial'],
@@ -1338,12 +1338,12 @@ function LicenseModal({
             ['requires_attribution', 'Attribution'],
             ['share_alike', 'Share-alike'],
           ] as [keyof typeof form, string][]).map(([key, label]) => (
-            <label key={key} className="flex items-center gap-2 text-sm text-zinc-300">
+            <label key={key} className="flex items-center gap-2 text-sm text-slate-300">
               <input
                 type="checkbox"
                 checked={form[key] as boolean}
                 onChange={(e) => setForm({ ...form, [key]: e.target.checked })}
-                className="h-4 w-4 accent-rose-600"
+                className="h-4 w-4 accent-fuchsia-600"
               />
               Permits {label.toLowerCase()}
             </label>

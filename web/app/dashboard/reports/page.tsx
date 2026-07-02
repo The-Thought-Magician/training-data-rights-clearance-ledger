@@ -70,11 +70,11 @@ function toThroughputPoints(raw: Throughput['throughput']): { label: string; cou
 
 const STATUS_TONE: Record<string, string> = {
   received: 'bg-sky-500', investigating: 'bg-amber-500', valid: 'bg-emerald-500',
-  invalid: 'bg-zinc-600', remediating: 'bg-rose-500', resolved: 'bg-emerald-600',
+  invalid: 'bg-slate-600', remediating: 'bg-fuchsia-500', resolved: 'bg-emerald-600',
   escalated: 'bg-red-600',
 }
 const TYPE_TONE: Record<string, string> = {
-  copyright: 'bg-rose-500', privacy: 'bg-purple-500', contract: 'bg-sky-500', takedown: 'bg-amber-500',
+  copyright: 'bg-fuchsia-500', privacy: 'bg-purple-500', contract: 'bg-sky-500', takedown: 'bg-amber-500',
 }
 
 export default function ReportsPage() {
@@ -128,8 +128,8 @@ export default function ReportsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Reports &amp; Analytics</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">Reports &amp; Analytics</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Clearance throughput, model coverage, and claims activity across your data estate.
           </p>
         </div>
@@ -161,8 +161,8 @@ export default function ReportsPage() {
       <Card>
         <CardHeader className="flex items-center justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-zinc-100">Clearance Throughput</h2>
-            <p className="text-xs text-zinc-500">Sources cleared per period</p>
+            <h2 className="text-sm font-semibold text-slate-100">Clearance Throughput</h2>
+            <p className="text-xs text-slate-500">Sources cleared per period</p>
           </div>
           <Badge tone="zinc">{points.length} periods</Badge>
         </CardHeader>
@@ -179,12 +179,12 @@ export default function ReportsPage() {
                 const h = maxCount > 0 ? Math.max(4, (p.count / maxCount) * 170) : 4
                 return (
                   <div key={`${p.label}-${i}`} className="flex flex-1 flex-col items-center justify-end gap-1" title={`${p.label}: ${p.count}`}>
-                    <span className="text-xs tabular-nums text-zinc-400">{p.count}</span>
+                    <span className="text-xs tabular-nums text-slate-400">{p.count}</span>
                     <div
-                      className="w-full rounded-t bg-gradient-to-t from-rose-700 to-rose-500"
+                      className="w-full rounded-t bg-gradient-to-t from-fuchsia-700 to-fuchsia-500"
                       style={{ height: h }}
                     />
-                    <span className="w-full truncate text-center text-[10px] text-zinc-600">{p.label}</span>
+                    <span className="w-full truncate text-center text-[10px] text-slate-600">{p.label}</span>
                   </div>
                 )
               })}
@@ -197,8 +197,8 @@ export default function ReportsPage() {
         {/* Coverage by model */}
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-100">Coverage by Model</h2>
-            <p className="text-xs text-zinc-500">% of bound sources fully cleared</p>
+            <h2 className="text-sm font-semibold text-slate-100">Coverage by Model</h2>
+            <p className="text-xs text-slate-500">% of bound sources fully cleared</p>
           </CardHeader>
           <CardBody>
             {byModel.length === 0 ? (
@@ -212,13 +212,13 @@ export default function ReportsPage() {
                 {byModel.map((m, i) => (
                   <div key={`${m.name}-${i}`}>
                     <div className="mb-1 flex items-center justify-between text-sm">
-                      <span className="truncate font-medium text-zinc-200">{m.name}</span>
-                      <span className="tabular-nums text-zinc-400">
+                      <span className="truncate font-medium text-slate-200">{m.name}</span>
+                      <span className="tabular-nums text-slate-400">
                         {m.cleared}/{m.total}{' '}
                         <span className={coverageColor(m.coverage)}>({m.coverage.toFixed(0)}%)</span>
                       </span>
                     </div>
-                    <div className="h-2.5 w-full overflow-hidden rounded-full bg-zinc-800">
+                    <div className="h-2.5 w-full overflow-hidden rounded-full bg-slate-800">
                       <div
                         className={`h-full rounded-full ${coverageBar(m.coverage)}`}
                         style={{ width: `${Math.min(100, m.coverage)}%` }}
@@ -234,8 +234,8 @@ export default function ReportsPage() {
         {/* Claims by status */}
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-zinc-100">Claims by Status</h2>
-            <p className="text-xs text-zinc-500">{claimsTotal} total claims</p>
+            <h2 className="text-sm font-semibold text-slate-100">Claims by Status</h2>
+            <p className="text-xs text-slate-500">{claimsTotal} total claims</p>
           </CardHeader>
           <CardBody>
             {claimsByStatus.length === 0 ? (
@@ -254,8 +254,8 @@ export default function ReportsPage() {
       {/* Claims by type */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-zinc-100">Claims by Type</h2>
-          <p className="text-xs text-zinc-500">Volume by category of dispute</p>
+          <h2 className="text-sm font-semibold text-slate-100">Claims by Type</h2>
+          <p className="text-xs text-slate-500">Volume by category of dispute</p>
         </CardHeader>
         <CardBody>
           {claimsByType.length === 0 ? (
@@ -277,17 +277,17 @@ export default function ReportsPage() {
                     const share = claimsTotal > 0 ? (b.count / claimsTotal) * 100 : 0
                     return (
                       <Tr key={b.key}>
-                        <Td className="font-medium capitalize text-zinc-100">{b.key}</Td>
+                        <Td className="font-medium capitalize text-slate-100">{b.key}</Td>
                         <Td className="text-right tabular-nums">{b.count}</Td>
                         <Td>
                           <div className="flex items-center gap-2">
-                            <div className="h-2 w-40 max-w-full overflow-hidden rounded-full bg-zinc-800">
+                            <div className="h-2 w-40 max-w-full overflow-hidden rounded-full bg-slate-800">
                               <div
-                                className={`h-full rounded-full ${TYPE_TONE[b.key] ?? 'bg-rose-500'}`}
+                                className={`h-full rounded-full ${TYPE_TONE[b.key] ?? 'bg-fuchsia-500'}`}
                                 style={{ width: `${share}%` }}
                               />
                             </div>
-                            <span className="text-xs tabular-nums text-zinc-500">{share.toFixed(0)}%</span>
+                            <span className="text-xs tabular-nums text-slate-500">{share.toFixed(0)}%</span>
                           </div>
                         </Td>
                       </Tr>
@@ -314,14 +314,14 @@ function DistList({ buckets, toneMap }: { buckets: { key: string; count: number 
           return (
             <div key={b.key}>
               <div className="mb-1 flex items-center justify-between text-sm">
-                <span className="inline-flex items-center gap-2 capitalize text-zinc-200">
-                  <span className={`h-2.5 w-2.5 rounded-full ${toneMap[b.key] ?? 'bg-zinc-500'}`} />
+                <span className="inline-flex items-center gap-2 capitalize text-slate-200">
+                  <span className={`h-2.5 w-2.5 rounded-full ${toneMap[b.key] ?? 'bg-slate-500'}`} />
                   {b.key}
                 </span>
-                <span className="tabular-nums text-zinc-400">{b.count}</span>
+                <span className="tabular-nums text-slate-400">{b.count}</span>
               </div>
-              <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
-                <div className={`h-full rounded-full ${toneMap[b.key] ?? 'bg-zinc-500'}`} style={{ width: `${share}%` }} />
+              <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                <div className={`h-full rounded-full ${toneMap[b.key] ?? 'bg-slate-500'}`} style={{ width: `${share}%` }} />
               </div>
             </div>
           )
@@ -333,10 +333,10 @@ function DistList({ buckets, toneMap }: { buckets: { key: string; count: number 
 function coverageColor(p: number) {
   if (p >= 90) return 'text-emerald-400'
   if (p >= 60) return 'text-amber-400'
-  return 'text-rose-400'
+  return 'text-fuchsia-400'
 }
 function coverageBar(p: number) {
   if (p >= 90) return 'bg-emerald-500'
   if (p >= 60) return 'bg-amber-500'
-  return 'bg-rose-500'
+  return 'bg-fuchsia-500'
 }

@@ -21,31 +21,31 @@ export default function SignUp() {
   }
 
   return (
-    <main className="min-h-screen bg-zinc-950 flex items-center justify-center px-4">
+    <main className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="text-xl font-black text-rose-500">TrainingDataRightsClearanceLedger</Link>
-          <h1 className="text-2xl font-bold mt-4 text-zinc-100">Create your account</h1>
+          <Link href="/" className="text-xl font-black text-fuchsia-500">TrainingDataRightsClearanceLedger</Link>
+          <h1 className="text-2xl font-bold mt-4 text-slate-100">Create your account</h1>
         </div>
-        <form onSubmit={handleSubmit} className="bg-zinc-900 rounded-xl border border-zinc-800 p-8 space-y-4">
+        <form onSubmit={handleSubmit} className="bg-slate-900 rounded-xl border border-slate-800 p-8 space-y-4">
           {error && <div className="bg-red-950/40 border border-red-800 text-red-300 rounded-lg p-3 text-sm">{error}</div>}
           <div>
-            <label className="block text-sm font-medium text-zinc-300 mb-1">Name</label>
-            <input name="name" type="text" required className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500" placeholder="Your name" />
+            <label className="block text-sm font-medium text-slate-300 mb-1">Name</label>
+            <input name="name" type="text" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-fuchsia-500" placeholder="Your name" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-zinc-300 mb-1">Email</label>
-            <input name="email" type="email" required className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500" placeholder="you@example.com" />
+            <label className="block text-sm font-medium text-slate-300 mb-1">Email</label>
+            <input name="email" type="email" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-fuchsia-500" placeholder="you@example.com" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-zinc-300 mb-1">Password</label>
-            <input name="password" type="password" required minLength={8} className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500" />
+            <label className="block text-sm font-medium text-slate-300 mb-1">Password</label>
+            <input name="password" type="password" required minLength={8} className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-fuchsia-500" />
           </div>
-          <button type="submit" disabled={loading} className="w-full bg-rose-600 hover:bg-rose-500 disabled:opacity-50 text-white py-3 rounded-lg font-semibold transition-colors">
+          <button type="submit" disabled={loading} className="w-full bg-fuchsia-600 hover:bg-fuchsia-500 disabled:opacity-50 text-white py-3 rounded-lg font-semibold transition-colors">
             {loading ? 'Creating account...' : 'Create Account'}
           </button>
-          <p className="text-center text-zinc-400 text-sm">
-            Already have an account? <Link href="/auth/sign-in" className="text-rose-400 hover:text-rose-300">Sign in</Link>
+          <p className="text-center text-slate-400 text-sm">
+            Already have an account? <Link href="/auth/sign-in" className="text-fuchsia-400 hover:text-fuchsia-300">Sign in</Link>
           </p>
         </form>
       </div>

@@ -155,14 +155,14 @@ export default function ModelsPage() {
     }
   }
 
-  const inputCls = 'w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 focus:border-rose-500 focus:outline-none'
+  const inputCls = 'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-600 focus:border-fuchsia-500 focus:outline-none'
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Models</h1>
-          <p className="mt-1 text-sm text-zinc-500">Models and their trained versions, with release status and data lineage.</p>
+          <h1 className="text-2xl font-semibold text-slate-100">Models</h1>
+          <p className="mt-1 text-sm text-slate-500">Models and their trained versions, with release status and data lineage.</p>
         </div>
         <div className="flex gap-2">
           <Button variant="secondary" onClick={() => openVersion()} disabled={models.length === 0}>+ Version</Button>
@@ -187,7 +187,7 @@ export default function ModelsPage() {
             <option value="released">Has released</option>
             <option value="quarantined">Has quarantined</option>
           </select>
-          <div className="text-xs text-zinc-500 sm:ml-auto">{filteredModels.length} of {models.length} models</div>
+          <div className="text-xs text-slate-500 sm:ml-auto">{filteredModels.length} of {models.length} models</div>
         </CardBody>
       </Card>
 
@@ -215,19 +215,19 @@ export default function ModelsPage() {
               <Card key={m.id}>
                 <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                   <div>
-                    <h2 className="text-lg font-semibold text-zinc-100">{m.name}</h2>
-                    {m.purpose && <p className="mt-0.5 text-sm text-zinc-400">{m.purpose}</p>}
-                    {m.description && <p className="mt-1 text-xs text-zinc-500">{m.description}</p>}
+                    <h2 className="text-lg font-semibold text-slate-100">{m.name}</h2>
+                    {m.purpose && <p className="mt-0.5 text-sm text-slate-400">{m.purpose}</p>}
+                    {m.description && <p className="mt-1 text-xs text-slate-500">{m.description}</p>}
                   </div>
                   <div className="flex shrink-0 items-center gap-2">
-                    <span className="text-xs text-zinc-500">{vs.length} version{vs.length === 1 ? '' : 's'}</span>
+                    <span className="text-xs text-slate-500">{vs.length} version{vs.length === 1 ? '' : 's'}</span>
                     <Button variant="secondary" className="px-3 py-1.5" onClick={() => openVersion(m.id)}>+ Version</Button>
                   </div>
                 </CardHeader>
                 <CardBody className="p-0">
                   {vs.length === 0 ? (
-                    <div className="px-5 py-6 text-center text-sm text-zinc-500">
-                      No versions yet. <button className="text-rose-400 hover:underline" onClick={() => openVersion(m.id)}>Add the first version</button>.
+                    <div className="px-5 py-6 text-center text-sm text-slate-500">
+                      No versions yet. <button className="text-fuchsia-400 hover:underline" onClick={() => openVersion(m.id)}>Add the first version</button>.
                     </div>
                   ) : (
                     <Table>
@@ -245,12 +245,12 @@ export default function ModelsPage() {
                       <Tbody>
                         {vs.map((v) => (
                           <Tr key={v.id}>
-                            <Td className="font-medium text-zinc-100">{v.version}</Td>
+                            <Td className="font-medium text-slate-100">{v.version}</Td>
                             <Td><Badge>{v.release_status}</Badge></Td>
                             <Td>{v.base_model || '—'}</Td>
                             <Td>{v.training_type || '—'}</Td>
                             <Td>{fmtDate(v.training_date)}</Td>
-                            <Td className="font-mono text-xs text-zinc-500">{v.manifest_hash ? v.manifest_hash.slice(0, 10) : '—'}</Td>
+                            <Td className="font-mono text-xs text-slate-500">{v.manifest_hash ? v.manifest_hash.slice(0, 10) : '—'}</Td>
                             <Td className="text-right">
                               <Link href={`/dashboard/models/${v.id}`}>
                                 <Button variant="ghost" className="px-3 py-1">Open →</Button>
@@ -283,15 +283,15 @@ export default function ModelsPage() {
         <form onSubmit={submitModel} className="space-y-4">
           {modelError && <div className="rounded-md border border-red-800 bg-red-950/40 px-3 py-2 text-sm text-red-300">{modelError}</div>}
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Name *</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Name *</label>
             <input className={inputCls} value={modelForm.name} onChange={(e) => setModelForm({ ...modelForm, name: e.target.value })} placeholder="Vision Classifier" autoFocus />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Purpose</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Purpose</label>
             <input className={inputCls} value={modelForm.purpose} onChange={(e) => setModelForm({ ...modelForm, purpose: e.target.value })} placeholder="Image content moderation" />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Description</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Description</label>
             <textarea className={inputCls} rows={3} value={modelForm.description} onChange={(e) => setModelForm({ ...modelForm, description: e.target.value })} />
           </div>
         </form>
@@ -312,29 +312,29 @@ export default function ModelsPage() {
         <form onSubmit={submitVersion} className="space-y-4">
           {versionError && <div className="rounded-md border border-red-800 bg-red-950/40 px-3 py-2 text-sm text-red-300">{versionError}</div>}
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Model *</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Model *</label>
             <select className={inputCls} value={versionForm.model_id} onChange={(e) => setVersionForm({ ...versionForm, model_id: e.target.value })}>
               <option value="">Select a model…</option>
               {models.map((m) => <option key={m.id} value={m.id}>{m.name}</option>)}
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Version *</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Version *</label>
             <input className={inputCls} value={versionForm.version} onChange={(e) => setVersionForm({ ...versionForm, version: e.target.value })} placeholder="1.0.0" />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Base model</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Base model</label>
             <input className={inputCls} value={versionForm.base_model} onChange={(e) => setVersionForm({ ...versionForm, base_model: e.target.value })} placeholder="llama-3-8b" />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-zinc-400">Training type</label>
+              <label className="mb-1 block text-xs font-medium text-slate-400">Training type</label>
               <select className={inputCls} value={versionForm.training_type} onChange={(e) => setVersionForm({ ...versionForm, training_type: e.target.value })}>
                 {TRAINING_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-zinc-400">Training date</label>
+              <label className="mb-1 block text-xs font-medium text-slate-400">Training date</label>
               <input type="date" className={inputCls} value={versionForm.training_date} onChange={(e) => setVersionForm({ ...versionForm, training_date: e.target.value })} />
             </div>
           </div>

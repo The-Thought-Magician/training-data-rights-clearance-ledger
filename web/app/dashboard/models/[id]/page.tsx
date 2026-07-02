@@ -210,14 +210,14 @@ export default function ModelVersionPage() {
     }
   }
 
-  const inputCls = 'w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 focus:border-rose-500 focus:outline-none'
+  const inputCls = 'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-600 focus:border-fuchsia-500 focus:outline-none'
 
   if (loading) return <PageSpinner label="Loading model version..." />
 
   if (error || !version) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/models" className="text-sm text-rose-400 hover:underline">← Back to models</Link>
+        <Link href="/dashboard/models" className="text-sm text-fuchsia-400 hover:underline">← Back to models</Link>
         <Card><CardBody>
           <div className="text-sm text-red-400">{error || 'Model version not found.'}</div>
           <Button variant="secondary" className="mt-3" onClick={load}>Retry</Button>
@@ -231,22 +231,22 @@ export default function ModelVersionPage() {
   return (
     <div className="space-y-6">
       <div>
-        <button onClick={() => router.push('/dashboard/models')} className="text-sm text-rose-400 hover:underline">← Back to models</button>
+        <button onClick={() => router.push('/dashboard/models')} className="text-sm text-fuchsia-400 hover:underline">← Back to models</button>
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <div className="flex items-center gap-3">
-            <h1 className="text-2xl font-semibold text-zinc-100">Version {version.version}</h1>
+            <h1 className="text-2xl font-semibold text-slate-100">Version {version.version}</h1>
             <Badge>{version.release_status}</Badge>
           </div>
-          <div className="mt-2 flex flex-wrap gap-x-6 gap-y-1 text-sm text-zinc-500">
-            <span>Base: <span className="text-zinc-300">{version.base_model || '—'}</span></span>
-            <span>Training: <span className="text-zinc-300">{version.training_type || '—'}</span></span>
-            <span>Trained: <span className="text-zinc-300">{fmtDate(version.training_date)}</span></span>
+          <div className="mt-2 flex flex-wrap gap-x-6 gap-y-1 text-sm text-slate-500">
+            <span>Base: <span className="text-slate-300">{version.base_model || '—'}</span></span>
+            <span>Training: <span className="text-slate-300">{version.training_type || '—'}</span></span>
+            <span>Trained: <span className="text-slate-300">{fmtDate(version.training_date)}</span></span>
           </div>
           {version.manifest_hash && (
-            <div className="mt-1 font-mono text-xs text-zinc-600">manifest: {version.manifest_hash}</div>
+            <div className="mt-1 font-mono text-xs text-slate-600">manifest: {version.manifest_hash}</div>
           )}
         </div>
         <Button onClick={() => { setReleaseError(null); setReleaseNote(''); setReleaseForce(false); setReleaseOpen(true) }} disabled={released}>
@@ -264,14 +264,14 @@ export default function ModelVersionPage() {
       {/* Release readiness */}
       <Card>
         <CardHeader className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-zinc-200">Release readiness</h2>
+          <h2 className="text-sm font-semibold text-slate-200">Release readiness</h2>
           <Badge tone={readiness?.ready ? 'green' : 'amber'}>{readiness?.ready ? 'Ready to release' : `${readiness?.blockers.length || 0} blocker(s)`}</Badge>
         </CardHeader>
         <CardBody>
           {readiness?.ready ? (
             <p className="text-sm text-emerald-400">All bound sources are cleared. This version is ready for sign-off.</p>
           ) : (readiness?.blockers.length || 0) === 0 ? (
-            <p className="text-sm text-zinc-500">No readiness data available.</p>
+            <p className="text-sm text-slate-500">No readiness data available.</p>
           ) : (
             <ul className="space-y-2">
               {readiness!.blockers.map((b, i) => {
@@ -283,7 +283,7 @@ export default function ModelVersionPage() {
                     <div>
                       <span className="text-amber-200">{blockerText(b)}</span>
                       {linkedSource && (
-                        <Link href={`/dashboard/sources/${linkedSource.id}`} className="ml-2 text-rose-400 hover:underline">
+                        <Link href={`/dashboard/sources/${linkedSource.id}`} className="ml-2 text-fuchsia-400 hover:underline">
                           {linkedSource.name}
                         </Link>
                       )}
@@ -300,8 +300,8 @@ export default function ModelVersionPage() {
       <Card>
         <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-zinc-200">Data lineage</h2>
-            <p className="text-xs text-zinc-500">Sources bound to this version. Each binding is part of the manifest.</p>
+            <h2 className="text-sm font-semibold text-slate-200">Data lineage</h2>
+            <p className="text-xs text-slate-500">Sources bound to this version. Each binding is part of the manifest.</p>
           </div>
           <Button variant="secondary" className="px-3 py-1.5" onClick={() => { setBindError(null); setBindSourceId(''); setBindProportion(''); setBindPreprocessing(''); setBindOpen(true) }} disabled={availableSources.length === 0}>
             + Bind source
@@ -333,17 +333,17 @@ export default function ModelVersionPage() {
                   const s = sourceById[b.source_id]
                   return (
                     <Tr key={b.id}>
-                      <Td className="font-medium text-zinc-100">
+                      <Td className="font-medium text-slate-100">
                         {s ? (
-                          <Link href={`/dashboard/sources/${s.id}`} className="hover:text-rose-400">{s.name}</Link>
+                          <Link href={`/dashboard/sources/${s.id}`} className="hover:text-fuchsia-400">{s.name}</Link>
                         ) : (
-                          <span className="font-mono text-xs text-zinc-500">{b.source_id}</span>
+                          <span className="font-mono text-xs text-slate-500">{b.source_id}</span>
                         )}
                       </Td>
                       <Td>{s?.status ? <Badge>{s.status}</Badge> : '—'}</Td>
                       <Td>{s?.risk_score != null ? Number(s.risk_score).toFixed(1) : '—'}</Td>
                       <Td>{b.proportion != null ? `${(Number(b.proportion) * (Number(b.proportion) <= 1 ? 100 : 1)).toFixed(Number(b.proportion) <= 1 ? 0 : 1)}%` : '—'}</Td>
-                      <Td className="max-w-[14rem] truncate text-zinc-400">{b.preprocessing || '—'}</Td>
+                      <Td className="max-w-[14rem] truncate text-slate-400">{b.preprocessing || '—'}</Td>
                       <Td className="text-right">
                         <Button variant="ghost" className="px-2 py-1 text-red-400" onClick={() => unbind(b.id)} disabled={unbinding === b.id || released}>
                           {unbinding === b.id ? <Spinner /> : 'Unbind'}
@@ -361,28 +361,28 @@ export default function ModelVersionPage() {
       {/* Ledger */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-zinc-200">Ledger trail</h2>
-          <p className="text-xs text-zinc-500">Tamper-evident entries recorded for this model version.</p>
+          <h2 className="text-sm font-semibold text-slate-200">Ledger trail</h2>
+          <p className="text-xs text-slate-500">Tamper-evident entries recorded for this model version.</p>
         </CardHeader>
         <CardBody className="p-0">
           {ledger.length === 0 ? (
-            <div className="px-5 py-6 text-center text-sm text-zinc-500">No ledger entries yet for this version.</div>
+            <div className="px-5 py-6 text-center text-sm text-slate-500">No ledger entries yet for this version.</div>
           ) : (
-            <ol className="divide-y divide-zinc-800">
+            <ol className="divide-y divide-slate-800">
               {ledger
                 .slice()
                 .sort((a, b) => (b.seq ?? 0) - (a.seq ?? 0))
                 .map((e) => (
                   <li key={e.id} className="flex items-start gap-3 px-5 py-3">
-                    <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 text-[10px] tabular-nums text-zinc-500">
+                    <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-[10px] tabular-nums text-slate-500">
                       {e.seq ?? '•'}
                     </span>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
                         <Badge tone="purple">{e.action}</Badge>
-                        <span className="text-xs text-zinc-500">{fmtDate(e.created_at)}</span>
+                        <span className="text-xs text-slate-500">{fmtDate(e.created_at)}</span>
                       </div>
-                      {e.entry_hash && <div className="mt-1 truncate font-mono text-[11px] text-zinc-600">{e.entry_hash}</div>}
+                      {e.entry_hash && <div className="mt-1 truncate font-mono text-[11px] text-slate-600">{e.entry_hash}</div>}
                     </div>
                   </li>
                 ))}
@@ -406,21 +406,21 @@ export default function ModelVersionPage() {
         <form onSubmit={submitBind} className="space-y-4">
           {bindError && <div className="rounded-md border border-red-800 bg-red-950/40 px-3 py-2 text-sm text-red-300">{bindError}</div>}
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Source *</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Source *</label>
             <select className={inputCls} value={bindSourceId} onChange={(e) => setBindSourceId(e.target.value)}>
               <option value="">Select a source…</option>
               {availableSources.map((s) => (
                 <option key={s.id} value={s.id}>{s.name}{s.status ? ` (${s.status})` : ''}</option>
               ))}
             </select>
-            {availableSources.length === 0 && <p className="mt-1 text-xs text-zinc-500">All sources are already bound.</p>}
+            {availableSources.length === 0 && <p className="mt-1 text-xs text-slate-500">All sources are already bound.</p>}
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Proportion (0–1 fraction, optional)</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Proportion (0–1 fraction, optional)</label>
             <input className={inputCls} type="number" step="0.01" min="0" value={bindProportion} onChange={(e) => setBindProportion(e.target.value)} placeholder="0.25" />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Preprocessing notes</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Preprocessing notes</label>
             <textarea className={inputCls} rows={2} value={bindPreprocessing} onChange={(e) => setBindPreprocessing(e.target.value)} placeholder="dedup, NSFW filter, tokenized" />
           </div>
         </form>
@@ -446,12 +446,12 @@ export default function ModelVersionPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Release note</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Release note</label>
             <textarea className={inputCls} rows={3} value={releaseNote} onChange={(e) => setReleaseNote(e.target.value)} placeholder="Sign-off rationale, scope of release..." />
           </div>
           {!readiness?.ready && (
-            <label className="flex items-center gap-2 text-sm text-zinc-300">
-              <input type="checkbox" checked={releaseForce} onChange={(e) => setReleaseForce(e.target.checked)} className="h-4 w-4 rounded border-zinc-600 bg-zinc-900 text-rose-600 focus:ring-rose-500" />
+            <label className="flex items-center gap-2 text-sm text-slate-300">
+              <input type="checkbox" checked={releaseForce} onChange={(e) => setReleaseForce(e.target.checked)} className="h-4 w-4 rounded border-slate-600 bg-slate-900 text-fuchsia-600 focus:ring-fuchsia-500" />
               Override blockers and release anyway
             </label>
           )}

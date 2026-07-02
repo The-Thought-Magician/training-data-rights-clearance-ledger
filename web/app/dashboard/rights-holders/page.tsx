@@ -189,14 +189,14 @@ export default function RightsHoldersPage() {
     }
   }
 
-  const inputCls = 'w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 focus:border-rose-500 focus:outline-none'
+  const inputCls = 'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-600 focus:border-fuchsia-500 focus:outline-none'
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Rights Holders</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">Rights Holders</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Registry of individuals, publishers, vendors and collecting societies tied to your data.
           </p>
         </div>
@@ -226,7 +226,7 @@ export default function RightsHoldersPage() {
             <option value="all">All types</option>
             {HOLDER_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
           </select>
-          <div className="text-xs text-zinc-500 sm:ml-auto">
+          <div className="text-xs text-slate-500 sm:ml-auto">
             {filtered.length} of {holders.length} shown
           </div>
         </CardBody>
@@ -263,7 +263,7 @@ export default function RightsHoldersPage() {
           <Tbody>
             {filtered.map((h) => (
               <Tr key={h.id} className="cursor-pointer" onClick={() => setDrawerId(h.id)}>
-                <Td className="font-medium text-zinc-100">{h.name}</Td>
+                <Td className="font-medium text-slate-100">{h.name}</Td>
                 <Td><Badge tone={holderTone(h.holder_type) as any}>{h.holder_type}</Badge></Td>
                 <Td>{h.contact_email || '—'}</Td>
                 <Td>{h.jurisdiction || '—'}</Td>
@@ -298,25 +298,25 @@ export default function RightsHoldersPage() {
         <form onSubmit={submitForm} className="space-y-4">
           {formError && <div className="rounded-md border border-red-800 bg-red-950/40 px-3 py-2 text-sm text-red-300">{formError}</div>}
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Name *</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Name *</label>
             <input className={inputCls} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Acme Publishing Ltd." autoFocus />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Type</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Type</label>
             <select className={inputCls} value={form.holder_type} onChange={(e) => setForm({ ...form, holder_type: e.target.value })}>
               {HOLDER_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Contact email</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Contact email</label>
             <input className={inputCls} type="email" value={form.contact_email} onChange={(e) => setForm({ ...form, contact_email: e.target.value })} placeholder="legal@acme.com" />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Jurisdiction</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Jurisdiction</label>
             <input className={inputCls} value={form.jurisdiction} onChange={(e) => setForm({ ...form, jurisdiction: e.target.value })} placeholder="EU / US-CA / UK" />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-zinc-400">Notes</label>
+            <label className="mb-1 block text-xs font-medium text-slate-400">Notes</label>
             <textarea className={inputCls} rows={3} value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
           </div>
         </form>
@@ -336,8 +336,8 @@ export default function RightsHoldersPage() {
           </>
         }
       >
-        <p className="text-sm text-zinc-300">
-          Delete <span className="font-medium text-zinc-100">{deleting?.name}</span>? This cannot be undone.
+        <p className="text-sm text-slate-300">
+          Delete <span className="font-medium text-slate-100">{deleting?.name}</span>? This cannot be undone.
         </p>
       </Modal>
 
@@ -345,12 +345,12 @@ export default function RightsHoldersPage() {
       {drawerId && (
         <div className="fixed inset-0 z-40 flex justify-end bg-black/60" onClick={() => setDrawerId(null)}>
           <div
-            className="h-full w-full max-w-md overflow-y-auto border-l border-zinc-800 bg-zinc-950 shadow-2xl"
+            className="h-full w-full max-w-md overflow-y-auto border-l border-slate-800 bg-slate-950 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between border-b border-zinc-800 px-5 py-4">
-              <h2 className="text-base font-semibold text-zinc-100">Linked items</h2>
-              <button onClick={() => setDrawerId(null)} className="rounded-md p-1 text-zinc-500 hover:bg-zinc-800 hover:text-zinc-200" aria-label="Close">✕</button>
+            <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4">
+              <h2 className="text-base font-semibold text-slate-100">Linked items</h2>
+              <button onClick={() => setDrawerId(null)} className="rounded-md p-1 text-slate-500 hover:bg-slate-800 hover:text-slate-200" aria-label="Close">✕</button>
             </div>
             <div className="space-y-6 px-5 py-5">
               {detailLoading ? (
@@ -361,15 +361,15 @@ export default function RightsHoldersPage() {
                 <>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h3 className="text-lg font-semibold text-zinc-100">{detail.holder.name}</h3>
+                      <h3 className="text-lg font-semibold text-slate-100">{detail.holder.name}</h3>
                       <Badge tone={holderTone(detail.holder.holder_type) as any}>{detail.holder.holder_type}</Badge>
                     </div>
                     <dl className="mt-3 space-y-1 text-sm">
-                      <div className="flex justify-between"><dt className="text-zinc-500">Contact</dt><dd className="text-zinc-300">{detail.holder.contact_email || '—'}</dd></div>
-                      <div className="flex justify-between"><dt className="text-zinc-500">Jurisdiction</dt><dd className="text-zinc-300">{detail.holder.jurisdiction || '—'}</dd></div>
-                      <div className="flex justify-between"><dt className="text-zinc-500">Added</dt><dd className="text-zinc-300">{fmtDate(detail.holder.created_at)}</dd></div>
+                      <div className="flex justify-between"><dt className="text-slate-500">Contact</dt><dd className="text-slate-300">{detail.holder.contact_email || '—'}</dd></div>
+                      <div className="flex justify-between"><dt className="text-slate-500">Jurisdiction</dt><dd className="text-slate-300">{detail.holder.jurisdiction || '—'}</dd></div>
+                      <div className="flex justify-between"><dt className="text-slate-500">Added</dt><dd className="text-slate-300">{fmtDate(detail.holder.created_at)}</dd></div>
                     </dl>
-                    {detail.holder.notes && <p className="mt-3 rounded-lg border border-zinc-800 bg-zinc-900/60 p-3 text-sm text-zinc-400">{detail.holder.notes}</p>}
+                    {detail.holder.notes && <p className="mt-3 rounded-lg border border-slate-800 bg-slate-900/60 p-3 text-sm text-slate-400">{detail.holder.notes}</p>}
                     <div className="mt-4 flex gap-2">
                       <Button variant="secondary" className="px-3 py-1.5" onClick={() => openEdit(detail.holder)}>Edit</Button>
                       <Button variant="danger" className="px-3 py-1.5" onClick={() => setDeleting(detail.holder)}>Delete</Button>
@@ -377,37 +377,37 @@ export default function RightsHoldersPage() {
                   </div>
 
                   <div className="grid grid-cols-3 gap-3 text-center">
-                    <div className="rounded-lg border border-zinc-800 bg-zinc-900/60 p-3">
-                      <div className="text-2xl font-semibold text-zinc-100">{detail.licenses.length}</div>
-                      <div className="text-xs text-zinc-500">Licenses</div>
+                    <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-3">
+                      <div className="text-2xl font-semibold text-slate-100">{detail.licenses.length}</div>
+                      <div className="text-xs text-slate-500">Licenses</div>
                     </div>
-                    <div className="rounded-lg border border-zinc-800 bg-zinc-900/60 p-3">
-                      <div className="text-2xl font-semibold text-zinc-100">{detail.optouts.length}</div>
-                      <div className="text-xs text-zinc-500">Opt-outs</div>
+                    <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-3">
+                      <div className="text-2xl font-semibold text-slate-100">{detail.optouts.length}</div>
+                      <div className="text-xs text-slate-500">Opt-outs</div>
                     </div>
-                    <div className="rounded-lg border border-zinc-800 bg-zinc-900/60 p-3">
-                      <div className="text-2xl font-semibold text-zinc-100">{detail.claims.length}</div>
-                      <div className="text-xs text-zinc-500">Claims</div>
+                    <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-3">
+                      <div className="text-2xl font-semibold text-slate-100">{detail.claims.length}</div>
+                      <div className="text-xs text-slate-500">Claims</div>
                     </div>
                   </div>
 
                   <DrawerSection title="Licenses" items={detail.licenses} render={(l: any) => (
                     <div className="flex items-center justify-between">
-                      <span className="text-zinc-200">{l.license_name || l.license_type || 'License'}</span>
+                      <span className="text-slate-200">{l.license_name || l.license_type || 'License'}</span>
                       {l.status && <Badge>{l.status}</Badge>}
                     </div>
                   )} />
 
                   <DrawerSection title="Opt-outs" items={detail.optouts} render={(o: any) => (
                     <div className="flex items-center justify-between">
-                      <span className="text-zinc-200">{o.subject_identity || o.optout_type || 'Opt-out'}</span>
+                      <span className="text-slate-200">{o.subject_identity || o.optout_type || 'Opt-out'}</span>
                       {o.honor_status && <Badge>{o.honor_status}</Badge>}
                     </div>
                   )} />
 
                   <DrawerSection title="Claims" items={detail.claims} render={(c: any) => (
                     <div className="flex items-center justify-between">
-                      <span className="text-zinc-200">{c.claim_type || 'Claim'}{c.claimant ? ` · ${c.claimant}` : ''}</span>
+                      <span className="text-slate-200">{c.claim_type || 'Claim'}{c.claimant ? ` · ${c.claimant}` : ''}</span>
                       <div className="flex gap-1">
                         {c.severity && <Badge>{c.severity}</Badge>}
                         {c.status && <Badge>{c.status}</Badge>}
@@ -427,13 +427,13 @@ export default function RightsHoldersPage() {
 function DrawerSection({ title, items, render }: { title: string; items: any[]; render: (i: any) => React.ReactNode }) {
   return (
     <div>
-      <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500">{title} ({items.length})</h4>
+      <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{title} ({items.length})</h4>
       {items.length === 0 ? (
-        <p className="text-sm text-zinc-600">None linked.</p>
+        <p className="text-sm text-slate-600">None linked.</p>
       ) : (
         <ul className="space-y-2">
           {items.map((it, i) => (
-            <li key={it.id || i} className="rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm">
+            <li key={it.id || i} className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm">
               {render(it)}
             </li>
           ))}

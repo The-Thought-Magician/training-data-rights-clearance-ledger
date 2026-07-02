@@ -205,8 +205,8 @@ export default function ClaimsPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Claims &amp; Disputes</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">Claims &amp; Disputes</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Intake takedown notices and rights disputes, triage severity, and track them to
             resolution. New claims auto-derive model-version impacts from source lineage.
           </p>
@@ -234,7 +234,7 @@ export default function ClaimsPage() {
           <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
-            className="rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+            className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
           >
             <option value="">All types</option>
             {CLAIM_TYPES.map((t) => (
@@ -246,7 +246,7 @@ export default function ClaimsPage() {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+            className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
           >
             <option value="">All statuses</option>
             {STATUSES.map((s) => (
@@ -258,7 +258,7 @@ export default function ClaimsPage() {
           <select
             value={severityFilter}
             onChange={(e) => setSeverityFilter(e.target.value)}
-            className="rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+            className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
           >
             <option value="">All severities</option>
             {SEVERITIES.map((s) => (
@@ -271,7 +271,7 @@ export default function ClaimsPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search claimant / description..."
-            className="w-full rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none sm:w-72"
+            className="w-full rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none sm:w-72"
           />
         </div>
         <div className="flex gap-1.5">
@@ -281,8 +281,8 @@ export default function ClaimsPage() {
               onClick={() => setView(v)}
               className={`rounded-lg px-3 py-1.5 text-sm font-medium capitalize transition-colors ${
                 view === v
-                  ? 'bg-rose-600 text-white'
-                  : 'bg-zinc-800/60 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+                  ? 'bg-fuchsia-600 text-white'
+                  : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
               }`}
             >
               {v}
@@ -308,14 +308,14 @@ export default function ClaimsPage() {
             return (
               <div key={col.key} className="flex flex-col">
                 <div className="mb-2 flex items-center justify-between px-1">
-                  <span className="text-sm font-semibold text-zinc-300">{col.label}</span>
-                  <span className="rounded-md bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">
+                  <span className="text-sm font-semibold text-slate-300">{col.label}</span>
+                  <span className="rounded-md bg-slate-800 px-2 py-0.5 text-xs text-slate-400">
                     {items.length}
                   </span>
                 </div>
                 <div className="flex flex-col gap-2">
                   {items.length === 0 ? (
-                    <div className="rounded-lg border border-dashed border-zinc-800 px-3 py-6 text-center text-xs text-zinc-600">
+                    <div className="rounded-lg border border-dashed border-slate-800 px-3 py-6 text-center text-xs text-slate-600">
                       Empty
                     </div>
                   ) : (
@@ -325,10 +325,10 @@ export default function ClaimsPage() {
                         <Link
                           key={c.id}
                           href={`/dashboard/claims/${c.id}`}
-                          className="block rounded-lg border border-zinc-800 bg-zinc-900/60 p-3 transition-colors hover:border-rose-700/60 hover:bg-zinc-900"
+                          className="block rounded-lg border border-slate-800 bg-slate-900/60 p-3 transition-colors hover:border-fuchsia-700/60 hover:bg-slate-900"
                         >
                           <div className="flex items-start justify-between gap-2">
-                            <span className="text-sm font-medium text-zinc-100">{c.claimant}</span>
+                            <span className="text-sm font-medium text-slate-100">{c.claimant}</span>
                             <Badge tone={severityTone[c.severity] ?? 'zinc'}>{c.severity}</Badge>
                           </div>
                           <div className="mt-1.5 flex flex-wrap items-center gap-1">
@@ -337,12 +337,12 @@ export default function ClaimsPage() {
                             {c.legal_hold && <Badge tone="rose">legal hold</Badge>}
                           </div>
                           {c.source_id && (
-                            <div className="mt-1.5 truncate text-xs text-zinc-500">
+                            <div className="mt-1.5 truncate text-xs text-slate-500">
                               src: {sourceById.get(c.source_id) ?? c.source_id}
                             </div>
                           )}
                           <div className="mt-1.5 flex items-center justify-between text-xs">
-                            <span className="text-zinc-600">{fmtDate(c.created_at)}</span>
+                            <span className="text-slate-600">{fmtDate(c.created_at)}</span>
                             {c.response_deadline && <Badge tone={dl.tone}>{dl.label}</Badge>}
                           </div>
                         </Link>
@@ -359,7 +359,7 @@ export default function ClaimsPage() {
           <CardBody className="p-0">
             <div className="w-full overflow-x-auto">
               <table className="w-full text-left text-sm">
-                <thead className="bg-zinc-900/80 text-xs uppercase tracking-wide text-zinc-500">
+                <thead className="bg-slate-900/80 text-xs uppercase tracking-wide text-slate-500">
                   <tr>
                     <th className="px-4 py-3 font-medium">Claimant</th>
                     <th className="px-4 py-3 font-medium">Type</th>
@@ -371,20 +371,20 @@ export default function ClaimsPage() {
                     <th className="px-4 py-3 font-medium">Created</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-zinc-800">
+                <tbody className="divide-y divide-slate-800">
                   {filtered.map((c) => {
                     const dl = deadlineState(c.response_deadline)
                     return (
-                      <tr key={c.id} className="hover:bg-zinc-900/40">
+                      <tr key={c.id} className="hover:bg-slate-900/40">
                         <td className="px-4 py-3">
                           <Link
                             href={`/dashboard/claims/${c.id}`}
-                            className="font-medium text-rose-400 hover:underline"
+                            className="font-medium text-fuchsia-400 hover:underline"
                           >
                             {c.claimant}
                           </Link>
                           {c.description && (
-                            <div className="mt-0.5 max-w-md truncate text-xs text-zinc-500">
+                            <div className="mt-0.5 max-w-md truncate text-xs text-slate-500">
                               {c.description}
                             </div>
                           )}
@@ -398,7 +398,7 @@ export default function ClaimsPage() {
                         <td className="px-4 py-3">
                           <Badge>{c.status}</Badge>
                         </td>
-                        <td className="px-4 py-3 text-zinc-400">
+                        <td className="px-4 py-3 text-slate-400">
                           {c.source_id ? sourceById.get(c.source_id) ?? c.source_id : '—'}
                         </td>
                         <td className="px-4 py-3">
@@ -407,7 +407,7 @@ export default function ClaimsPage() {
                         <td className="px-4 py-3">
                           {c.legal_hold ? <Badge tone="rose">hold</Badge> : '—'}
                         </td>
-                        <td className="px-4 py-3 text-zinc-500">{fmtDate(c.created_at)}</td>
+                        <td className="px-4 py-3 text-slate-500">{fmtDate(c.created_at)}</td>
                       </tr>
                     )
                   })}
@@ -436,25 +436,25 @@ export default function ClaimsPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
-              Claimant <span className="text-rose-400">*</span>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              Claimant <span className="text-fuchsia-400">*</span>
             </label>
             <input
               value={form.claimant}
               onChange={(e) => setForm((f) => ({ ...f, claimant: e.target.value }))}
               placeholder="Name of the party filing the claim"
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
                 Type
               </label>
               <select
                 value={form.claim_type}
                 onChange={(e) => setForm((f) => ({ ...f, claim_type: e.target.value }))}
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+                className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
               >
                 {CLAIM_TYPES.map((t) => (
                   <option key={t} value={t}>
@@ -464,13 +464,13 @@ export default function ClaimsPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
                 Severity
               </label>
               <select
                 value={form.severity}
                 onChange={(e) => setForm((f) => ({ ...f, severity: e.target.value }))}
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+                className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
               >
                 {SEVERITIES.map((s) => (
                   <option key={s} value={s}>
@@ -481,13 +481,13 @@ export default function ClaimsPage() {
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Affected source (optional)
             </label>
             <select
               value={form.source_id}
               onChange={(e) => setForm((f) => ({ ...f, source_id: e.target.value }))}
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
             >
               <option value="">None</option>
               {sources.map((s) => (
@@ -496,23 +496,23 @@ export default function ClaimsPage() {
                 </option>
               ))}
             </select>
-            <p className="mt-1 text-xs text-zinc-600">
+            <p className="mt-1 text-xs text-slate-600">
               Selecting a source auto-derives impacts on every model version trained on it.
             </p>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Response deadline (optional)
             </label>
             <input
               type="date"
               value={form.response_deadline}
               onChange={(e) => setForm((f) => ({ ...f, response_deadline: e.target.value }))}
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Description
             </label>
             <textarea
@@ -520,15 +520,15 @@ export default function ClaimsPage() {
               onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
               rows={3}
               placeholder="Details of the claim or notice…"
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
-          <label className="flex cursor-pointer items-center gap-2 text-sm text-zinc-300">
+          <label className="flex cursor-pointer items-center gap-2 text-sm text-slate-300">
             <input
               type="checkbox"
               checked={form.legal_hold}
               onChange={(e) => setForm((f) => ({ ...f, legal_hold: e.target.checked }))}
-              className="h-4 w-4 accent-rose-600"
+              className="h-4 w-4 accent-fuchsia-600"
             />
             Place affected entities under legal hold
           </label>

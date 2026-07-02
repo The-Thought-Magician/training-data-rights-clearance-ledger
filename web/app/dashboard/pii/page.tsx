@@ -142,8 +142,8 @@ export default function PiiScreeningPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">PII Screening</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">PII Screening</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Detect and document personal data, lawful basis, and anonymization across training sources.
           </p>
         </div>
@@ -183,7 +183,7 @@ export default function PiiScreeningPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search source, reviewer, category, basis..."
-              className="w-64 max-w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-64 max-w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
         </CardBody>
@@ -223,11 +223,11 @@ export default function PiiScreeningPage() {
               const cats = asCategories(s.pii_categories)
               return (
                 <Tr key={s.id}>
-                  <Td className="font-medium text-zinc-100">{sourceName(s.source_id)}</Td>
+                  <Td className="font-medium text-slate-100">{sourceName(s.source_id)}</Td>
                   <Td><Badge>{s.status}</Badge></Td>
                   <Td>
                     {cats.length === 0 ? (
-                      <span className="text-zinc-600">none</span>
+                      <span className="text-slate-600">none</span>
                     ) : (
                       <div className="flex flex-wrap gap-1">
                         {cats.slice(0, 3).map((c) => (
@@ -237,7 +237,7 @@ export default function PiiScreeningPage() {
                       </div>
                     )}
                   </Td>
-                  <Td className="text-zinc-400">{s.lawful_basis || '—'}</Td>
+                  <Td className="text-slate-400">{s.lawful_basis || '—'}</Td>
                   <Td>
                     {s.anonymization_status && s.anonymization_status !== 'none' ? (
                       <Badge tone="green">{s.anonymization_status}</Badge>
@@ -245,14 +245,14 @@ export default function PiiScreeningPage() {
                       <Badge tone="zinc">none</Badge>
                     )}
                   </Td>
-                  <Td className="text-zinc-400">{s.reviewer || '—'}</Td>
-                  <Td className="text-zinc-400">{fmtDate(s.screened_at)}</Td>
+                  <Td className="text-slate-400">{s.reviewer || '—'}</Td>
+                  <Td className="text-slate-400">{fmtDate(s.screened_at)}</Td>
                   <Td className="text-right">
                     <div className="flex items-center justify-end gap-2">
                       <select
                         value={s.status}
                         onChange={(e) => quickStatus(s, e.target.value)}
-                        className="rounded-md border border-zinc-700 bg-zinc-900 px-2 py-1 text-xs text-zinc-200 focus:border-rose-600 focus:outline-none"
+                        className="rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-xs text-slate-200 focus:border-fuchsia-600 focus:outline-none"
                         aria-label="Set status"
                       >
                         {STATUSES.map((st) => <option key={st} value={st}>{st}</option>)}
@@ -327,8 +327,8 @@ function FilterChip({ active, onClick, children }: { active: boolean; onClick: (
       onClick={onClick}
       className={`rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors ${
         active
-          ? 'border-rose-600 bg-rose-950/40 text-rose-300'
-          : 'border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200'
+          ? 'border-fuchsia-600 bg-fuchsia-950/40 text-fuchsia-300'
+          : 'border-slate-700 bg-slate-900 text-slate-400 hover:border-slate-600 hover:text-slate-200'
       }`}
     >
       {children}
@@ -447,9 +447,9 @@ function ScreeningForm({
                   className={`rounded-full border px-2.5 py-1 text-xs font-medium transition-colors ${
                     on
                       ? SENSITIVE.has(c)
-                        ? 'border-rose-700 bg-rose-950/60 text-rose-300'
-                        : 'border-rose-600 bg-rose-950/40 text-rose-300'
-                      : 'border-zinc-700 bg-zinc-900 text-zinc-400 hover:text-zinc-200'
+                        ? 'border-fuchsia-700 bg-fuchsia-950/60 text-fuchsia-300'
+                        : 'border-fuchsia-600 bg-fuchsia-950/40 text-fuchsia-300'
+                      : 'border-slate-700 bg-slate-900 text-slate-400 hover:text-slate-200'
                   }`}
                 >
                   {c}
@@ -476,8 +476,8 @@ function ScreeningForm({
           </Field>
         </div>
 
-        <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 p-4">
-          <div className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500">Remediation</div>
+        <div className="rounded-lg border border-slate-800 bg-slate-950/40 p-4">
+          <div className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Remediation</div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="Action">
               <input value={remAction} onChange={(e) => setRemAction(e.target.value)} className={inputCls} placeholder="e.g. redact email fields" />
@@ -508,14 +508,14 @@ function ScreeningForm({
 }
 
 const inputCls =
-  'w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-rose-600 focus:outline-none'
+  'w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-fuchsia-600 focus:outline-none'
 
 function Field({ label, hint, required, children }: { label: string; hint?: string; required?: boolean; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 flex items-center gap-1 text-xs font-medium text-zinc-400">
-        {label} {required && <span className="text-rose-500">*</span>}
-        {hint && <span className="font-normal text-zinc-600">— {hint}</span>}
+      <span className="mb-1 flex items-center gap-1 text-xs font-medium text-slate-400">
+        {label} {required && <span className="text-fuchsia-500">*</span>}
+        {hint && <span className="font-normal text-slate-600">— {hint}</span>}
       </span>
       {children}
     </label>

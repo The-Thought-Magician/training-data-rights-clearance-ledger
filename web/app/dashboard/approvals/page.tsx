@@ -233,8 +233,8 @@ export default function ApprovalsPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Approvals</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">Approvals</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Multi-step sign-off workflows for clearances, releases, overrides, and licenses. Route
             decisions sequentially or in parallel across required roles.
           </p>
@@ -267,7 +267,7 @@ export default function ApprovalsPage() {
           <button
             onClick={() => setView('queue')}
             className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-              view === 'queue' ? 'bg-rose-600 text-white' : 'bg-zinc-800/60 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+              view === 'queue' ? 'bg-fuchsia-600 text-white' : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
             }`}
           >
             Approval queue
@@ -275,7 +275,7 @@ export default function ApprovalsPage() {
           <button
             onClick={() => setView('mine')}
             className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-              view === 'mine' ? 'bg-rose-600 text-white' : 'bg-zinc-800/60 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+              view === 'mine' ? 'bg-fuchsia-600 text-white' : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
             }`}
           >
             My pending ({counts.mine})
@@ -285,7 +285,7 @@ export default function ApprovalsPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search requests..."
-          className="w-full rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none sm:w-64"
+          className="w-full rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none sm:w-64"
         />
       </div>
 
@@ -296,7 +296,7 @@ export default function ApprovalsPage() {
               key={t}
               onClick={() => setTab(t)}
               className={`rounded-lg px-3 py-1.5 text-sm font-medium capitalize transition-colors ${
-                tab === t ? 'bg-zinc-700 text-white' : 'bg-zinc-800/60 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+                tab === t ? 'bg-slate-700 text-white' : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
               }`}
             >
               {t.replace('-', ' ')}
@@ -334,12 +334,12 @@ export default function ApprovalsPage() {
                 <Td>
                   <button
                     onClick={() => openDetail(r.id)}
-                    className="text-left font-medium text-zinc-100 hover:text-rose-400"
+                    className="text-left font-medium text-slate-100 hover:text-fuchsia-400"
                   >
                     {r.title}
                   </button>
                   {r.description && (
-                    <div className="mt-0.5 max-w-[20rem] truncate text-xs text-zinc-500" title={r.description}>
+                    <div className="mt-0.5 max-w-[20rem] truncate text-xs text-slate-500" title={r.description}>
                       {r.description}
                     </div>
                   )}
@@ -347,11 +347,11 @@ export default function ApprovalsPage() {
                 <Td>
                   <Badge tone="blue">{r.request_type}</Badge>
                 </Td>
-                <Td className="text-zinc-400">{r.mode}</Td>
+                <Td className="text-slate-400">{r.mode}</Td>
                 <Td>
                   <Badge>{r.status}</Badge>
                 </Td>
-                <Td className="text-xs text-zinc-500">
+                <Td className="text-xs text-slate-500">
                   {r.entity_type ? (
                     <span>
                       {r.entity_type}
@@ -361,7 +361,7 @@ export default function ApprovalsPage() {
                     '—'
                   )}
                 </Td>
-                <Td className="text-xs text-zinc-500">{fmtDate(r.updated_at ?? r.created_at)}</Td>
+                <Td className="text-xs text-slate-500">{fmtDate(r.updated_at ?? r.created_at)}</Td>
                 <Td className="text-right">
                   <Button variant="ghost" className="px-2.5 py-1.5 text-xs" onClick={() => openDetail(r.id)}>
                     Review
@@ -403,20 +403,20 @@ export default function ApprovalsPage() {
             <div className="flex flex-wrap items-center gap-2">
               <Badge tone="blue">{detail.request.request_type}</Badge>
               <Badge>{detail.request.status}</Badge>
-              <span className="text-xs text-zinc-500">{detail.request.mode} mode</span>
+              <span className="text-xs text-slate-500">{detail.request.mode} mode</span>
             </div>
             {detail.request.description && (
-              <p className="text-sm text-zinc-400">{detail.request.description}</p>
+              <p className="text-sm text-slate-400">{detail.request.description}</p>
             )}
             {detail.request.entity_type && (
-              <div className="text-xs text-zinc-500">
-                Entity: <span className="text-zinc-300">{detail.request.entity_type}</span>
+              <div className="text-xs text-slate-500">
+                Entity: <span className="text-slate-300">{detail.request.entity_type}</span>
                 {detail.request.entity_id ? ` · ${detail.request.entity_id}` : ''}
               </div>
             )}
 
             <div>
-              <div className="mb-2 text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <div className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">
                 Approval steps
               </div>
               <ol className="space-y-2">
@@ -425,27 +425,27 @@ export default function ApprovalsPage() {
                   .map((s) => (
                     <li
                       key={s.id}
-                      className="rounded-lg border border-zinc-800 bg-zinc-900/40 px-3 py-2.5"
+                      className="rounded-lg border border-slate-800 bg-slate-900/40 px-3 py-2.5"
                     >
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
-                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-zinc-800 text-xs text-zinc-300">
+                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-800 text-xs text-slate-300">
                             {s.step_order}
                           </span>
-                          <span className="text-sm text-zinc-200">
+                          <span className="text-sm text-slate-200">
                             {s.required_role ?? 'any role'}
                           </span>
                           {s.assigned_to && (
-                            <span className="text-xs text-zinc-500">→ {s.assigned_to}</span>
+                            <span className="text-xs text-slate-500">→ {s.assigned_to}</span>
                           )}
                         </div>
                         <Badge tone={decisionTone(s.decision)}>{s.decision}</Badge>
                       </div>
                       {s.comment && (
-                        <div className="mt-1.5 text-xs text-zinc-400">“{s.comment}”</div>
+                        <div className="mt-1.5 text-xs text-slate-400">“{s.comment}”</div>
                       )}
                       {s.decided_at && (
-                        <div className="mt-1 text-[11px] text-zinc-600">
+                        <div className="mt-1 text-[11px] text-slate-600">
                           {s.decided_by ? `${s.decided_by} · ` : ''}
                           {fmtDate(s.decided_at)}
                         </div>
@@ -468,16 +468,16 @@ export default function ApprovalsPage() {
                     </li>
                   ))}
                 {detail.steps.length === 0 && (
-                  <li className="text-sm text-zinc-500">No steps defined.</li>
+                  <li className="text-sm text-slate-500">No steps defined.</li>
                 )}
               </ol>
             </div>
-            <div className="text-[11px] text-zinc-600">
+            <div className="text-[11px] text-slate-600">
               Requested by {detail.request.requested_by ?? '—'} · created {fmtDate(detail.request.created_at)}
             </div>
           </div>
         ) : (
-          <p className="text-sm text-zinc-500">Request not found.</p>
+          <p className="text-sm text-slate-500">Request not found.</p>
         )}
       </Modal>
 
@@ -499,13 +499,13 @@ export default function ApprovalsPage() {
       >
         <div className="space-y-4">
           {decideStep && (
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-slate-500">
               Step {decideStep.step_order} ·{' '}
-              <span className="text-zinc-300">{decideStep.required_role ?? 'any role'}</span>
+              <span className="text-slate-300">{decideStep.required_role ?? 'any role'}</span>
             </p>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Decision
             </label>
             <div className="flex flex-wrap gap-2">
@@ -520,7 +520,7 @@ export default function ApprovalsPage() {
                         : d === 'reject'
                           ? 'border-red-800 bg-red-950/50 text-red-300'
                           : 'border-amber-800 bg-amber-950/50 text-amber-300'
-                      : 'border-zinc-800 bg-zinc-900/40 text-zinc-400 hover:border-zinc-700'
+                      : 'border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700'
                   }`}
                 >
                   {d.replace('-', ' ')}
@@ -529,7 +529,7 @@ export default function ApprovalsPage() {
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Comment (optional)
             </label>
             <textarea
@@ -537,7 +537,7 @@ export default function ApprovalsPage() {
               onChange={(e) => setDecideComment(e.target.value)}
               rows={3}
               placeholder="Notes on this decision…"
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
         </div>
@@ -562,25 +562,25 @@ export default function ApprovalsPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
-              Title <span className="text-rose-400">*</span>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              Title <span className="text-fuchsia-400">*</span>
             </label>
             <input
               value={cTitle}
               onChange={(e) => setCTitle(e.target.value)}
               placeholder="e.g. Release sign-off for model v1.2"
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
                 Request type
               </label>
               <select
                 value={cType}
                 onChange={(e) => setCType(e.target.value)}
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+                className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
               >
                 {REQUEST_TYPES.map((t) => (
                   <option key={t} value={t}>
@@ -590,13 +590,13 @@ export default function ApprovalsPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
                 Mode
               </label>
               <select
                 value={cMode}
                 onChange={(e) => setCMode(e.target.value as 'sequential' | 'parallel')}
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+                className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
               >
                 <option value="sequential">sequential</option>
                 <option value="parallel">parallel</option>
@@ -605,42 +605,42 @@ export default function ApprovalsPage() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
                 Entity type (optional)
               </label>
               <input
                 value={cEntityType}
                 onChange={(e) => setCEntityType(e.target.value)}
                 placeholder="e.g. model_version"
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+                className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
                 Entity id (optional)
               </label>
               <input
                 value={cEntityId}
                 onChange={(e) => setCEntityId(e.target.value)}
                 placeholder="uuid"
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+                className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
               />
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
               Description (optional)
             </label>
             <textarea
               value={cDescription}
               onChange={(e) => setCDescription(e.target.value)}
               rows={2}
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
           <div>
             <div className="mb-1 flex items-center justify-between">
-              <label className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <label className="text-xs font-medium uppercase tracking-wide text-slate-500">
                 Approval steps
               </label>
               <Button variant="ghost" className="px-2 py-1 text-xs" onClick={addStepRow}>
@@ -650,13 +650,13 @@ export default function ApprovalsPage() {
             <div className="space-y-2">
               {cSteps.map((s, i) => (
                 <div key={i} className="flex items-center gap-2">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-800 text-xs text-zinc-300">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs text-slate-300">
                     {i + 1}
                   </span>
                   <select
                     value={s.required_role}
                     onChange={(e) => updateStepRow(i, { required_role: e.target.value })}
-                    className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-rose-600 focus:outline-none"
+                    className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-fuchsia-600 focus:outline-none"
                   >
                     {ROLES.map((r) => (
                       <option key={r} value={r}>
@@ -668,12 +668,12 @@ export default function ApprovalsPage() {
                     value={s.assigned_to}
                     onChange={(e) => updateStepRow(i, { assigned_to: e.target.value })}
                     placeholder="assigned to (optional user id)"
-                    className="flex-1 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-rose-600 focus:outline-none"
+                    className="flex-1 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-fuchsia-600 focus:outline-none"
                   />
                   {cSteps.length > 1 && (
                     <button
                       onClick={() => removeStepRow(i)}
-                      className="rounded-md px-2 py-1 text-zinc-500 hover:bg-zinc-800 hover:text-red-300"
+                      className="rounded-md px-2 py-1 text-slate-500 hover:bg-slate-800 hover:text-red-300"
                       aria-label="Remove step"
                     >
                       ✕

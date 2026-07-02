@@ -142,8 +142,8 @@ export default function CopyrightScreeningPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-zinc-100">Copyright Screening</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold text-slate-100">Copyright Screening</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Review training sources for infringing or unlicensed copyrighted works.
           </p>
         </div>
@@ -185,7 +185,7 @@ export default function CopyrightScreeningPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search source, reviewer, method..."
-              className="w-64 max-w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-rose-600 focus:outline-none"
+              className="w-64 max-w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-fuchsia-600 focus:outline-none"
             />
           </div>
         </CardBody>
@@ -224,15 +224,15 @@ export default function CopyrightScreeningPage() {
           <Tbody>
             {filtered.map((s) => (
               <Tr key={s.id}>
-                <Td className="font-medium text-zinc-100">{sourceName(s.source_id)}</Td>
+                <Td className="font-medium text-slate-100">{sourceName(s.source_id)}</Td>
                 <Td><Badge>{s.status}</Badge></Td>
-                <Td className="text-zinc-400">{s.method || '—'}</Td>
-                <Td className="text-zinc-400">{s.reviewer || '—'}</Td>
+                <Td className="text-slate-400">{s.method || '—'}</Td>
+                <Td className="text-slate-400">{s.reviewer || '—'}</Td>
                 <Td className="text-right tabular-nums">
                   {flaggedCount(s.flagged_works) > 0 ? (
                     <Badge tone="rose">{flaggedCount(s.flagged_works)}</Badge>
                   ) : (
-                    <span className="text-zinc-600">0</span>
+                    <span className="text-slate-600">0</span>
                   )}
                 </Td>
                 <Td className="text-right tabular-nums">
@@ -242,21 +242,21 @@ export default function CopyrightScreeningPage() {
                 </Td>
                 <Td>
                   {s.remediation_action ? (
-                    <span className="text-zinc-300">
+                    <span className="text-slate-300">
                       {s.remediation_action}
                       {s.remediation_status && (
                         <Badge className="ml-2">{s.remediation_status}</Badge>
                       )}
                     </span>
-                  ) : <span className="text-zinc-600">—</span>}
+                  ) : <span className="text-slate-600">—</span>}
                 </Td>
-                <Td className="text-zinc-400">{fmtDate(s.screened_at)}</Td>
+                <Td className="text-slate-400">{fmtDate(s.screened_at)}</Td>
                 <Td className="text-right">
                   <div className="flex items-center justify-end gap-2">
                     <select
                       value={s.status}
                       onChange={(e) => quickStatus(s, e.target.value)}
-                      className="rounded-md border border-zinc-700 bg-zinc-900 px-2 py-1 text-xs text-zinc-200 focus:border-rose-600 focus:outline-none"
+                      className="rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-xs text-slate-200 focus:border-fuchsia-600 focus:outline-none"
                       aria-label="Set status"
                     >
                       {STATUSES.map((st) => <option key={st} value={st}>{st}</option>)}
@@ -334,8 +334,8 @@ function FilterChip({ active, onClick, children }: { active: boolean; onClick: (
       onClick={onClick}
       className={`rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors ${
         active
-          ? 'border-rose-600 bg-rose-950/40 text-rose-300'
-          : 'border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200'
+          ? 'border-fuchsia-600 bg-fuchsia-950/40 text-fuchsia-300'
+          : 'border-slate-700 bg-slate-900 text-slate-400 hover:border-slate-600 hover:text-slate-200'
       }`}
     >
       {children}
@@ -348,13 +348,13 @@ function StatusBar({ counts, total }: { counts: Record<string, number>; total: n
   const segments: { key: string; tone: string }[] = [
     { key: 'passed', tone: 'bg-emerald-500' },
     { key: 'in-progress', tone: 'bg-amber-500' },
-    { key: 'flagged', tone: 'bg-rose-500' },
+    { key: 'flagged', tone: 'bg-fuchsia-500' },
     { key: 'failed', tone: 'bg-red-600' },
-    { key: 'not-started', tone: 'bg-zinc-600' },
+    { key: 'not-started', tone: 'bg-slate-600' },
   ]
   return (
     <div>
-      <div className="flex h-3 w-full overflow-hidden rounded-full border border-zinc-800 bg-zinc-900">
+      <div className="flex h-3 w-full overflow-hidden rounded-full border border-slate-800 bg-slate-900">
         {segments.map((seg) =>
           counts[seg.key] > 0 ? (
             <div
@@ -366,7 +366,7 @@ function StatusBar({ counts, total }: { counts: Record<string, number>; total: n
           ) : null,
         )}
       </div>
-      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-zinc-500">
+      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
         {segments.map((seg) => (
           <span key={seg.key} className="inline-flex items-center gap-1.5">
             <span className={`h-2 w-2 rounded-full ${seg.tone}`} /> {seg.key} {counts[seg.key]}
@@ -481,8 +481,8 @@ function ScreeningForm({
           <textarea value={flagged} onChange={(e) => setFlagged(e.target.value)} rows={3} className={inputCls} placeholder="Title / URL / identifier of suspected works" />
         </Field>
 
-        <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 p-4">
-          <div className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500">Remediation</div>
+        <div className="rounded-lg border border-slate-800 bg-slate-950/40 p-4">
+          <div className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Remediation</div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="Action">
               <input value={remAction} onChange={(e) => setRemAction(e.target.value)} className={inputCls} placeholder="e.g. remove flagged records" />
@@ -513,14 +513,14 @@ function ScreeningForm({
 }
 
 const inputCls =
-  'w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-rose-600 focus:outline-none'
+  'w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-fuchsia-600 focus:outline-none'
 
 function Field({ label, hint, required, children }: { label: string; hint?: string; required?: boolean; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 flex items-center gap-1 text-xs font-medium text-zinc-400">
-        {label} {required && <span className="text-rose-500">*</span>}
-        {hint && <span className="font-normal text-zinc-600">— {hint}</span>}
+      <span className="mb-1 flex items-center gap-1 text-xs font-medium text-slate-400">
+        {label} {required && <span className="text-fuchsia-500">*</span>}
+        {hint && <span className="font-normal text-slate-600">— {hint}</span>}
       </span>
       {children}
     </label>

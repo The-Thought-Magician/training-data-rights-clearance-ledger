@@ -49,14 +49,14 @@ const TABS = ['Workspace', 'Team', 'Clearance', 'Billing', 'Demo Data'] as const
 type Tab = typeof TABS[number]
 
 const inputCls =
-  'w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-rose-600 focus:outline-none'
+  'w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-fuchsia-600 focus:outline-none'
 
 function Field({ label, hint, required, children }: { label: string; hint?: string; required?: boolean; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 flex items-center gap-1 text-xs font-medium text-zinc-400">
-        {label} {required && <span className="text-rose-500">*</span>}
-        {hint && <span className="font-normal text-zinc-600">— {hint}</span>}
+      <span className="mb-1 flex items-center gap-1 text-xs font-medium text-slate-400">
+        {label} {required && <span className="text-fuchsia-500">*</span>}
+        {hint && <span className="font-normal text-slate-600">— {hint}</span>}
       </span>
       {children}
     </label>
@@ -124,8 +124,8 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-zinc-100">Settings</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <h1 className="text-2xl font-semibold text-slate-100">Settings</h1>
+        <p className="mt-1 text-sm text-slate-500">
           Manage your workspace, team, clearance requirements, billing, and demo data.
         </p>
       </div>
@@ -142,15 +142,15 @@ export default function SettingsPage() {
         </div>
       )}
 
-      <div className="flex flex-wrap gap-1 border-b border-zinc-800">
+      <div className="flex flex-wrap gap-1 border-b border-slate-800">
         {TABS.map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
             className={`-mb-px border-b-2 px-4 py-2 text-sm font-medium transition-colors ${
               tab === t
-                ? 'border-rose-500 text-rose-300'
-                : 'border-transparent text-zinc-500 hover:text-zinc-300'
+                ? 'border-fuchsia-500 text-fuchsia-300'
+                : 'border-transparent text-slate-500 hover:text-slate-300'
             }`}
           >
             {t}
@@ -224,7 +224,7 @@ function WorkspaceTab({
   return (
     <Card>
       <CardHeader className="flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-zinc-100">Workspace</h2>
+        <h2 className="text-sm font-semibold text-slate-100">Workspace</h2>
         {role && <Badge tone={roleTone(role)}>your role: {role}</Badge>}
       </CardHeader>
       <CardBody className="space-y-4">
@@ -237,13 +237,13 @@ function WorkspaceTab({
           </Field>
         </div>
         <div className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
-          <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 px-4 py-3">
-            <div className="text-xs uppercase tracking-wide text-zinc-500">Workspace ID</div>
-            <div className="mt-1 font-mono text-xs text-zinc-300">{workspace.id}</div>
+          <div className="rounded-lg border border-slate-800 bg-slate-950/40 px-4 py-3">
+            <div className="text-xs uppercase tracking-wide text-slate-500">Workspace ID</div>
+            <div className="mt-1 font-mono text-xs text-slate-300">{workspace.id}</div>
           </div>
-          <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 px-4 py-3">
-            <div className="text-xs uppercase tracking-wide text-zinc-500">Created</div>
-            <div className="mt-1 text-zinc-300">
+          <div className="rounded-lg border border-slate-800 bg-slate-950/40 px-4 py-3">
+            <div className="text-xs uppercase tracking-wide text-slate-500">Created</div>
+            <div className="mt-1 text-slate-300">
               {workspace.created_at ? new Date(workspace.created_at).toLocaleDateString() : '—'}
             </div>
           </div>
@@ -255,7 +255,7 @@ function WorkspaceTab({
             </Button>
           </div>
         ) : (
-          <p className="text-xs text-zinc-600">Only workspace admins can edit these settings.</p>
+          <p className="text-xs text-slate-600">Only workspace admins can edit these settings.</p>
         )}
       </CardBody>
     </Card>
@@ -309,8 +309,8 @@ function TeamTab({
     <Card>
       <CardHeader className="flex items-center justify-between">
         <div>
-          <h2 className="text-sm font-semibold text-zinc-100">Team Members</h2>
-          <p className="text-xs text-zinc-500">{members.length} member{members.length === 1 ? '' : 's'}</p>
+          <h2 className="text-sm font-semibold text-slate-100">Team Members</h2>
+          <p className="text-xs text-slate-500">{members.length} member{members.length === 1 ? '' : 's'}</p>
         </div>
         {canEdit && <Button onClick={() => { setFormError(null); setAddOpen(true) }}>+ Add Member</Button>}
       </CardHeader>
@@ -332,14 +332,14 @@ function TeamTab({
             <Tbody>
               {members.map((m) => (
                 <Tr key={m.id}>
-                  <Td className="font-medium text-zinc-100">{m.name || m.user_id?.slice(0, 12) || '—'}</Td>
-                  <Td className="text-zinc-400">{m.email || '—'}</Td>
+                  <Td className="font-medium text-slate-100">{m.name || m.user_id?.slice(0, 12) || '—'}</Td>
+                  <Td className="text-slate-400">{m.email || '—'}</Td>
                   <Td>
                     {canEdit ? (
                       <select
                         value={m.role || 'viewer'}
                         onChange={(e) => changeRole(m, e.target.value)}
-                        className="rounded-md border border-zinc-700 bg-zinc-900 px-2 py-1 text-xs text-zinc-200 focus:border-rose-600 focus:outline-none"
+                        className="rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-xs text-slate-200 focus:border-fuchsia-600 focus:outline-none"
                       >
                         {ROLES.map((r) => <option key={r} value={r}>{r}</option>)}
                       </select>
@@ -507,8 +507,8 @@ function ClearanceTab({
     <Card>
       <CardHeader className="flex items-center justify-between">
         <div>
-          <h2 className="text-sm font-semibold text-zinc-100">Clearance Requirements</h2>
-          <p className="text-xs text-zinc-500">Checks every source must satisfy before it can be cleared.</p>
+          <h2 className="text-sm font-semibold text-slate-100">Clearance Requirements</h2>
+          <p className="text-xs text-slate-500">Checks every source must satisfy before it can be cleared.</p>
         </div>
         {canEdit && <Button variant="secondary" onClick={addNew}>+ Add Requirement</Button>}
       </CardHeader>
@@ -516,21 +516,21 @@ function ClearanceTab({
         {draft.length === 0 ? (
           <EmptyState icon="🔒" title="No requirements configured" description="Add requirements to gate clearance approvals." />
         ) : (
-          <ul className="divide-y divide-zinc-800 rounded-lg border border-zinc-800">
+          <ul className="divide-y divide-slate-800 rounded-lg border border-slate-800">
             {draft.map((r) => (
               <li key={r.key} className="flex items-center justify-between gap-3 px-4 py-3">
                 <div className="min-w-0">
-                  <div className="font-medium text-zinc-100">{r.label || r.key}</div>
-                  <div className="font-mono text-xs text-zinc-600">{r.key}</div>
-                  {r.description && <div className="mt-0.5 text-xs text-zinc-500">{r.description}</div>}
+                  <div className="font-medium text-slate-100">{r.label || r.key}</div>
+                  <div className="font-mono text-xs text-slate-600">{r.key}</div>
+                  {r.description && <div className="mt-0.5 text-xs text-slate-500">{r.description}</div>}
                 </div>
-                <label className="flex shrink-0 cursor-pointer items-center gap-2 text-xs text-zinc-400">
+                <label className="flex shrink-0 cursor-pointer items-center gap-2 text-xs text-slate-400">
                   <input
                     type="checkbox"
                     checked={!!r.is_required}
                     onChange={() => toggle(r.key)}
                     disabled={!canEdit}
-                    className="h-4 w-4 rounded border-zinc-600 bg-zinc-900 accent-rose-600"
+                    className="h-4 w-4 rounded border-slate-600 bg-slate-900 accent-fuchsia-600"
                   />
                   Required
                 </label>
@@ -592,16 +592,16 @@ function BillingTab({ billing, setError }: { billing: BillingPlan | null; setErr
     <div className="space-y-4">
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-zinc-100">Current Plan</h2>
+          <h2 className="text-sm font-semibold text-slate-100">Current Plan</h2>
         </CardHeader>
         <CardBody className="space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-semibold capitalize text-zinc-100">{planName}</span>
+                <span className="text-2xl font-semibold capitalize text-slate-100">{planName}</span>
                 <Badge tone={isPro ? 'rose' : 'zinc'}>{status}</Badge>
               </div>
-              <p className="mt-1 text-sm text-zinc-500">
+              <p className="mt-1 text-sm text-slate-500">
                 {priceCents > 0 ? `$${(priceCents / 100).toFixed(2)} / month` : 'Free — all features included'}
               </p>
             </div>
@@ -617,7 +617,7 @@ function BillingTab({ billing, setError }: { billing: BillingPlan | null; setErr
             </div>
           </div>
           {billing?.subscription?.current_period_end && (
-            <div className="text-xs text-zinc-500">
+            <div className="text-xs text-slate-500">
               Current period ends {new Date(billing.subscription.current_period_end).toLocaleDateString()}
             </div>
           )}
@@ -672,8 +672,8 @@ function DemoTab({ flash, setError, reload }: { flash: (s: string) => void; setE
   return (
     <Card>
       <CardHeader>
-        <h2 className="text-sm font-semibold text-zinc-100">Demo Data</h2>
-        <p className="text-xs text-zinc-500">
+        <h2 className="text-sm font-semibold text-slate-100">Demo Data</h2>
+        <p className="text-xs text-slate-500">
           Populate your workspace with a realistic dataset to explore the platform, then clear it when you are done.
         </p>
       </CardHeader>
@@ -688,18 +688,18 @@ function DemoTab({ flash, setError, reload }: { flash: (s: string) => void; setE
         </div>
         {counts && (
           <div>
-            <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500">Seeded records</div>
+            <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">Seeded records</div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
               {Object.entries(counts).map(([k, v]) => (
-                <div key={k} className="rounded-lg border border-zinc-800 bg-zinc-950/40 px-3 py-2">
-                  <div className="text-xs capitalize text-zinc-500">{k.replace(/_/g, ' ')}</div>
-                  <div className="text-lg font-semibold tabular-nums text-zinc-100">{v}</div>
+                <div key={k} className="rounded-lg border border-slate-800 bg-slate-950/40 px-3 py-2">
+                  <div className="text-xs capitalize text-slate-500">{k.replace(/_/g, ' ')}</div>
+                  <div className="text-lg font-semibold tabular-nums text-slate-100">{v}</div>
                 </div>
               ))}
             </div>
           </div>
         )}
-        <p className="text-xs text-zinc-600">
+        <p className="text-xs text-slate-600">
           Seeding adds sources, licenses, screenings, opt-outs, models, versions, lineage, claims, and ledger entries.
           Reset removes the demo workspace data for your account.
         </p>
